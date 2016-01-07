@@ -1,12 +1,12 @@
 
-package nl.actorius;
+package nl.ipsen3;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import nl.actorius.persistence.UserDAO;
-import nl.actorius.resource.UserResource;
-import nl.actorius.service.UserService;
+import nl.ipsen3.persistence.UserDAO;
+import nl.ipsen3.resource.UserResource;
+import nl.ipsen3.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

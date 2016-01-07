@@ -1,4 +1,4 @@
-package nl.actorius.resource;
+package nl.ipsen3.resource;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import java.util.Collection;
@@ -11,9 +11,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import nl.actorius.View;
-import nl.actorius.model.User;
-import nl.actorius.service.UserService;
+import nl.ipsen3.View;
+import nl.ipsen3.model.User;
+import nl.ipsen3.service.UserService;
 
 /**
  * Meer informatie over resources:

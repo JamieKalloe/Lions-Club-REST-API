@@ -1,4 +1,4 @@
-package nl.actorius.service;
+package nl.ipsen3.service;
 
 import javax.ws.rs.NotFoundException;
 

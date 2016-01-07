@@ -1,7 +1,7 @@
-package nl.actorius.model;
+package nl.ipsen3.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import nl.actorius.View;
+import nl.ipsen3.View;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 

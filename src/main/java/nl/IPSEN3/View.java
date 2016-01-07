@@ -1,4 +1,4 @@
-package nl.actorius;
+package nl.ipsen3;
 
 /**
  * Meer informatie over views:

@@ -1,8 +1,8 @@
-package nl.actorius.service;
+package nl.ipsen3.service;
 
 import java.util.Collection;
-import nl.actorius.model.User;
-import nl.actorius.persistence.UserDAO;
+import nl.ipsen3.model.User;
+import nl.ipsen3.persistence.UserDAO;
 
 /**
  *

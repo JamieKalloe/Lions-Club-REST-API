@@ -1,8 +1,8 @@
-package nl.actorius.persistence;
+package nl.ipsen3.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
-import nl.actorius.model.User;
+import nl.ipsen3.model.User;
 
 /**
  *
