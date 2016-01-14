@@ -31,7 +31,12 @@ public class UserDAO
     {
         try
         {
-            return users.get(id);
+            for(User user : users) {
+                if(user.getId() == id) {
+                    return user;
+                }
+            }
+            return null;
         }
         catch(IndexOutOfBoundsException exception)
         {
