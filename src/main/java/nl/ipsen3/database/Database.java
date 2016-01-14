@@ -9,13 +9,10 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+
 import java.util.HashMap;
 import java.util.Set;
 
-/**
- *
- * @author Bernd
- */
 public class Database {
 
 
@@ -48,8 +45,6 @@ public class Database {
         String dbName = "lions_club";
         String url = "jdbc:mysql://127.0.0.1:3306/";
 
-
-
        /* String url = "";
         String user = "";
         String password = "";
@@ -70,6 +65,7 @@ public class Database {
      * @param from the from
      * @return the result set
      */
+
     public ResultSet select(String from) {
         String query = "SELECT * FROM `" + from+"`";
         ResultSet resultSet = queryDatabase(query);
@@ -83,6 +79,7 @@ public class Database {
      * @param where the where
      * @return the result set
      */
+
     public ResultSet select(String from, String where) {
         String query = "SELECT * FROM `" + from + "` WHERE " + where;
         ResultSet resultSet = queryDatabase(query);
@@ -96,6 +93,7 @@ public class Database {
      * @param id   the id
      * @return the result set
      */
+
     public ResultSet select(String from, int id) {
         String query = "SELECT * FROM `" + from + "` WHERE id=" + id;
         ResultSet resultSet = queryDatabase(query);
@@ -112,8 +110,9 @@ public class Database {
      * @param where        the where
      * @return the result set
      */
+
     public ResultSet select(String from, String foreignTable, String resultColumn, String filterColumn,String where) {
-        String query = "SELECT * FROM `" + from + "` WHERE "+resultColumn+" IN ( SELECT "+filterColumn+" FROM `"+foreignTable+ "` WHERE " + where +" )";
+        String query = "SELECT * FROM `" + from + "` WHERE "+resultColumn+" IN ( SELECT "+filterColumn+" FROM "+foreignTable+ "` WHERE " + where +" )";
         ResultSet resultSet = queryDatabase(query);
         return resultSet;
     }
@@ -215,7 +214,7 @@ public class Database {
      * @return the int
      */
     public int delete(String from, int id) {
-        String query = "DELETE FROM `" + from + "` WHERE id=" + id;
+        String query = "DELETE FROM `"+from+"` WHERE id="+id;
         int result = updateDatabase(query);
         return result;
     }
