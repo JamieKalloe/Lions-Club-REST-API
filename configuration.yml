@@ -1,1 +1,11 @@
-apiName: "IPSEN3 API Groep 1"
+apiName: "api"
+
+assets:
+  mappings:
+      /includes: /
+  overrides:
+    /: ../Lions-Client/public_html/
+      
+server:
+  rootPath: /api/*
+  adminContextPath: /admin

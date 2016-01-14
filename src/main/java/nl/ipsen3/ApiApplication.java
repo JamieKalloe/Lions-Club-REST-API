@@ -1,6 +1,8 @@
 
 package nl.ipsen3;
 
+import nl.ipsen3.database.Database;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -36,7 +38,8 @@ public class ApiApplication extends Application<ApiConfiguration>
     public void run(ApiConfiguration configuration, Environment environment)
     {
         name = configuration.getApiName();
-        
+        Database.getInstance(configuration);
+                
         logger.info(String.format("Set API name to %s", name));
         
         UserDAO userDAO = new UserDAO();

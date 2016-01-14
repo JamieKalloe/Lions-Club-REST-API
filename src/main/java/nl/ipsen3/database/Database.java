@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Set;
 
+import nl.ipsen3.ApiConfiguration;
+
 public class Database {
 
 
@@ -32,18 +34,24 @@ public class Database {
         }
         return databaseInstance;
     }
+    
+    public static synchronized Database getInstance(ApiConfiguration configuration) {
+        if(databaseInstance == null) {
+            databaseInstance = new Database(configuration);
+        }
+        return databaseInstance;
+    }
 
-    private Database() {
+    private Database(ApiConfiguration configuration) {
         //Mike's DB settings
 //        String url = "jdbc:mysql://localhost:3306/";
 //        String user = "lions_club";
 //        String password = "root";
 //        String dbName = "lions_club";
-
-        String user = "root";
-        String password = "";
-        String dbName = "lions_club";
-        String url = "jdbc:mysql://127.0.0.1:3306/";
+        String user = configuration.getDatabaseUser();
+        String password = configuration.getDatabasePwd();
+        String dbName = configuration.getDatabaseName();
+        String url = "jdbc:mysql://"+configuration.getDatabaseURL()+"/";
 
        /* String url = "";
         String user = "";
