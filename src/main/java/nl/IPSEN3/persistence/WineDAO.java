@@ -20,8 +20,8 @@ import nl.ipsen3.database.Database;
  */
 public class WineDAO {
     
-    private List<Wine> wines;
-    private Database databaseInstance;
+    private final List<Wine> wines;
+    private final Database databaseInstance;
     
     public WineDAO() {
         this.databaseInstance = Database.getInstance();
@@ -44,8 +44,7 @@ public class WineDAO {
     }
     
     public void add(Wine wine) {
-        wine = this.addWineToDatabase(wine);
-        wines.add(wine);
+        wines.add(addWineToDatabase(wine));
     }
     
     public void update(int id, Wine wine) {
