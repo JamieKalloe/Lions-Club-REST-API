@@ -52,7 +52,6 @@ public class UserResource
     @JsonView(View.Private.class)
     public void create(User user)
     {
-        //System.out.println(user);
         service.add(user);
     }
     

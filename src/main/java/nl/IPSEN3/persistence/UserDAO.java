@@ -55,7 +55,12 @@ public class UserDAO
     
     public void update(int id, User user)
     {
-        users.set(id, user);
+        User oldUser = this.get(id);
+        user.setId(id);
+        this.updateUserFromDatabase(user);
+        int idInList = users.indexOf(oldUser);
+        users.set(idInList, user);
+        
     }
     
     public void delete(int id)
@@ -110,6 +115,22 @@ public class UserDAO
         int id = databaseInstance.insertInto("guest", databaseData);
         user.setId(id);
         return user;
+    }
+    
+    private void updateUserFromDatabase(User user) {
+        HashMap databaseData = new HashMap();
+        databaseData.put("address_id", user.getAddressId());
+        databaseData.put("referral_id", user.getReferralId());
+        databaseData.put("email", user.getEmail());
+        databaseData.put("first_name", user.getFirstName());
+        databaseData.put("last_name", user.getLastName());
+        databaseData.put("prefix_last_name", user.getPrefixLastName());
+        databaseData.put("gender", user.getGender());
+        databaseData.put("notes", user.getNotes());
+        databaseData.put("password", user.getPassword());
+        databaseData.put("role", user.getRole());
+
+        databaseInstance.update("guest", user.getId(), databaseData);
     }
     
     private void removeUserFromDatabase(User user) {
