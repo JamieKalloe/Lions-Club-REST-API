@@ -26,6 +26,8 @@ public class Wine {
     @JsonView(View.Public.class)
     private double price;
     
+    public Wine() {}
+    
     public Wine(int id) {
         this.id = id;
         this.type = null;

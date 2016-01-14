@@ -5,10 +5,103 @@
  */
 package nl.IPSEN3.persistence;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import nl.IPSEN3.model.Wine;
+import nl.IPSEN3.model.WineType;
+import nl.ipsen3.database.Database;
+
 /**
  *
  * @author Jamie
  */
 public class WineDAO {
+    
+    private List<Wine> wines;
+    private Database databaseInstance;
+    
+    public WineDAO() {
+        this.databaseInstance = Database.getInstance();
+        this.wines = this.getAllFromDatabase();
+    }
+    
+    public List<Wine> getALl() {
+        return wines;
+    }
+    
+    public Wine get(int id) {
+        
+        for(Wine wine : wines) {
+            if(wine.getId() == id) {
+                return wine;
+            }
+        }
+        
+        return null;
+    }
+    
+    public void add(Wine wine) {
+        wine = this.addWineToDatabase(wine);
+        wines.add(wine);
+    }
+    
+    public void update(int id, Wine wine) {
+        wines.set(id, wine);
+    }
+    
+    public void delete(int id) {
+        Wine wine = this.get(id);
+        this.removeFromDatabase(wine);
+        wines.remove(wine);
+    }
+    
+    private void removeFromDatabase(Wine wine) {
+        databaseInstance.delete("wine", wine.getId());
+    }
+    
+    private Wine addWineToDatabase(Wine wine) {
+        HashMap databaseData = new HashMap();
+        databaseData.put("type_id", wine.getType().getId());
+        //TODO: merchant type
+        databaseData.put("name", wine.getName());
+        databaseData.put("region", wine.getRegion());
+        databaseData.put("country", wine.getCountry());
+        databaseData.put("year", wine.getYear());
+        databaseData.put("price", wine.getPrice());
+        
+        int id = databaseInstance.insertInto("wine", databaseData);
+        wine.setId(id);
+        
+        return wine;
+    }
+    
+    private List<Wine> getAllFromDatabase() {
+        List<Wine> wines = new ArrayList();
+        ResultSet results = databaseInstance.select("wine");
+        
+        try {
+            while(results.next()) {
+                Wine wine = new Wine();
+                
+                wine.setId(results.getInt("id"));
+                wine.setType(new WineType(results.getInt("type_id")));
+                //TODO: set merchant
+                wine.setName(results.getString("name"));
+                wine.setCountry(results.getString("country"));
+                wine.setRegion(results.getString("region"));
+                wine.setYear(results.getInt("year"));
+                wine.setPrice(results.getDouble("price"));
+                
+                wines.add(wine);
+        }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return wines;
+    }
     
 }

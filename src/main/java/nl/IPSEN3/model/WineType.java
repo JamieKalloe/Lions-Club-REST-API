@@ -24,9 +24,8 @@ public class WineType {
         
     }
     
-    public WineType(int id, String name) {
+    public WineType(int id) {
         this.id = id;
-        this.name = name;
     }
     
     public int getId() {
