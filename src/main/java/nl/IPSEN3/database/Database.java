@@ -41,7 +41,7 @@ public class Database {
 //        String dbName = "lions_club";
 
         String user = "root";
-        String password = "root";
+        String password = "";
         String dbName = "lions_club";
         String url = "jdbc:mysql://127.0.0.1:3306/";
 
@@ -142,7 +142,6 @@ public class Database {
                 queryValues += ", ";
             }
         }
-        System.out.println(queryTable + queryValues + ")");
         int result = updateDatabase(queryTable + queryValues + ")", Statement.RETURN_GENERATED_KEYS);
 
         return result;
