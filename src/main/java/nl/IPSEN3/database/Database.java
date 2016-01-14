@@ -5,10 +5,11 @@
  */
 package nl.ipsen3.database;
 
-import java.sql.*;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -40,10 +41,10 @@ public class Database {
 //        String password = "root";
 //        String dbName = "lions_club";
 
+        String url = "jdbc:mysql://127.0.0.1:3306/";
         String user = "root";
         String password = "";
         String dbName = "lions_club";
-        String url = "jdbc:mysql://127.0.0.1:3306/";
 
        /* String url = "";
         String user = "";
