@@ -21,6 +21,11 @@ public class Database {
 
     private static Database databaseInstance ;
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static synchronized Database getInstance() {
         if(databaseInstance == null) {
             databaseInstance = new Database();
