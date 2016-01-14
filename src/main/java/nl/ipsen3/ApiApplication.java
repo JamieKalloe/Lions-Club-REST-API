@@ -1,9 +1,9 @@
 
 package nl.ipsen3;
 
-import nl.ipsen3.database.Database;
-
 import io.dropwizard.Application;
+import io.dropwizard.ConfiguredBundle;
+import io.dropwizard.bundles.assets.ConfiguredAssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import nl.ipsen3.persistence.UserDAO;
@@ -28,18 +28,18 @@ public class ApiApplication extends Application<ApiConfiguration>
         return name;
     }
     
-    @Override
+      @Override
     public void initialize(Bootstrap<ApiConfiguration> bootstrap)
     {
-        
+        bootstrap.addBundle((ConfiguredBundle) new ConfiguredAssetsBundle("", "", "index.html"));
     }
+    
     
     @Override
     public void run(ApiConfiguration configuration, Environment environment)
     {
         name = configuration.getApiName();
-        Database.getInstance(configuration);
-                
+        
         logger.info(String.format("Set API name to %s", name));
         
         UserDAO userDAO = new UserDAO();
