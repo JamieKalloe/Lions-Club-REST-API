@@ -33,6 +33,12 @@
             <version>0.8.1-1</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-auth</artifactId>
+            <version>0.9.1</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <name>IPSEN3-Lions-API</name>
 </project>
