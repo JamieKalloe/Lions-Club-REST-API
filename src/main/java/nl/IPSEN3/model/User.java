@@ -13,45 +13,132 @@ import org.hibernate.validator.constraints.Length;
  */
 public class User
 {
-    @Length(min = 3, max = 100)
     @JsonView(View.Public.class)
-    private String fullName;
+    private int id;
+    
+    @JsonView(View.Public.class)
+    private int addressId;
+    
+    @JsonView(View.Public.class)
+    private int referralId;
     
     @Email
     @JsonView(View.Public.class)
-    private String emailAddress;
+    private String email;
+    
+    @Length(min = 3, max = 100)
+    @JsonView(View.Public.class)
+    private String firstName;
+    
+    @Length(min = 3, max = 100)
+    @JsonView(View.Public.class)
+    private String lastName;
+    
+    @Length(min = 3, max = 100)
+    @JsonView(View.Public.class)
+    private String prefixLastName;
+    
+    @Length(max = 1)
+    @JsonView(View.Public.class)
+    private String gender;
+    
+    @JsonView(View.Public.class)
+    private String notes;
     
     @Length(min = 8)
     @JsonView(View.Private.class)
     private String password;
 
-    public String getFullName()
-    {
-        return fullName;
+    @JsonView(View.Public.class)
+    private int role;
+
+    public int getId() {
+        return id;
     }
 
-    public void setFullName(String fullName)
-    {
-        this.fullName = fullName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getEmailAddress()
-    {
-        return emailAddress;
+    public int getAddressId() {
+        return addressId;
     }
 
-    public void setEmailAddress(String emailAddress)
-    {
-        this.emailAddress = emailAddress;
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
     }
 
-    public String getPassword()
-    {
+    public int getReferralId() {
+        return referralId;
+    }
+
+    public void setReferralId(int referralId) {
+        this.referralId = referralId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPrefixLastName() {
+        return prefixLastName;
+    }
+
+    public void setPrefixLastName(String prefixLastName) {
+        this.prefixLastName = prefixLastName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+    
+    
 }

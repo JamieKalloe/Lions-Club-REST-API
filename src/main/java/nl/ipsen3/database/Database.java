@@ -43,7 +43,7 @@ public class Database {
 
         String url = "jdbc:mysql://127.0.0.1:3306/";
         String user = "root";
-        String password = "";
+        String password = "root";
         String dbName = "lions_club";
 
        /* String url = "";
