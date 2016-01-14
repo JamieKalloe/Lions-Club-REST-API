@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import nl.ipsen3.model.User;
 import nl.ipsen3.database.Database;
+
+import java.util.HashMap;
+
 //Imports for SQL results
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,6 +49,7 @@ public class UserDAO
     
     public void add(User user)
     {
+        user = this.addUserToDatabase(user);
         users.add(user);
     }
     
@@ -56,7 +60,9 @@ public class UserDAO
     
     public void delete(int id)
     {
-        users.remove(id);
+        User user = this.get(id);
+        this.removeUserFromDatabase(user);
+        users.remove(user);
     }
     
     // PRIVATE functions
@@ -86,5 +92,27 @@ public class UserDAO
             e.printStackTrace();
         }
         return users;
+    }
+    
+    private User addUserToDatabase(User user) {
+        HashMap databaseData = new HashMap();
+        databaseData.put("address_id", user.getAddressId());
+        databaseData.put("referral_id", user.getReferralId());
+        databaseData.put("email", user.getEmail());
+        databaseData.put("first_name", user.getFirstName());
+        databaseData.put("last_name", user.getLastName());
+        databaseData.put("prefix_last_name", user.getPrefixLastName());
+        databaseData.put("gender", user.getGender());
+        databaseData.put("notes", user.getNotes());
+        databaseData.put("password", user.getPassword());
+        databaseData.put("role", user.getRole());
+
+        int id = databaseInstance.insertInto("guest", databaseData);
+        user.setId(id);
+        return user;
+    }
+    
+    private void removeUserFromDatabase(User user) {
+        databaseInstance.delete("guest", user.getId());
     }
 }
