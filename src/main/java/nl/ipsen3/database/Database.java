@@ -20,6 +20,7 @@ public class Database {
 
     private Connection connection;
     private Statement statement;
+    private static ApiConfiguration apiConfiguration;
 
     private static Database databaseInstance ;
 
@@ -30,7 +31,7 @@ public class Database {
      */
     public static synchronized Database getInstance() {
         if(databaseInstance == null) {
-//            databaseInstance = new Database();
+            databaseInstance = new Database(apiConfiguration);
         }
         return databaseInstance;
     }
@@ -38,6 +39,7 @@ public class Database {
     public static synchronized Database getInstance(ApiConfiguration configuration) {
         if(databaseInstance == null) {
             databaseInstance = new Database(configuration);
+            apiConfiguration = configuration;
         }
         return databaseInstance;
     }
@@ -48,19 +50,19 @@ public class Database {
 //        String user = "lions_club";
 //        String password = "root";
 //        String dbName = "lions_club";
-//        String user = configuration.getDatabaseUser();
-//        String password = configuration.getDatabasePwd();
-//        String dbName = configuration.getDatabaseName();
-//        String url = "jdbc:mysql://"+configuration.getDatabaseURL()+"/";
-
-       /* String url = "";
+        String user = configuration.getDatabaseUser();
+        String password = configuration.getDatabasePwd();
+        String dbName = configuration.getDatabaseName();
+        String url = "jdbc:mysql://"+configuration.getDatabaseURL()+"/";
+        
+        /* String url = "";
         String user = "";
         String password = "";
         String dbName = "";*/
 
 
         try {
-//            this.connection = DriverManager.getConnection(url + dbName, user, password);
+            this.connection = DriverManager.getConnection(url + dbName, user, password);
         } catch(Exception e) {
             e.printStackTrace();
         }
