@@ -32,7 +32,7 @@ public class ApiApplication extends Application<ApiConfiguration>
       @Override
     public void initialize(Bootstrap<ApiConfiguration> bootstrap)
     {
-        bootstrap.addBundle((ConfiguredBundle) new ConfiguredAssetsBundle("/public_html", "", "index.html"));
+        bootstrap.addBundle((ConfiguredBundle) new ConfiguredAssetsBundle("/Lions-Client", "", "index.html"));
     }
     
     
