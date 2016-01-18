@@ -28,6 +28,10 @@ public class Address {
         this.country = country;
         this.city = city;
     }
+    
+    public Address(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
