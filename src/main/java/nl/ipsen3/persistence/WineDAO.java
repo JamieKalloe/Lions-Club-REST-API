@@ -88,7 +88,7 @@ public class WineDAO {
                 
                 wine.setId(results.getInt("id"));
                 wine.setType(new WineType(results.getInt("type_id")));
-                wine.setMerchant(new Merchant(results.getInt("wine_merchant")));
+                wine.setMerchant(new Merchant(Integer.parseInt(results.getString("wine_merchant"))));
                 wine.setName(results.getString("name"));
                 wine.setCountry(results.getString("country"));
                 wine.setRegion(results.getString("region"));
