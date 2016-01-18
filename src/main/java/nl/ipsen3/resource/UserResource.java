@@ -21,7 +21,7 @@ import nl.ipsen3.service.UserService;
  * 
  * @author Peter van Vliet
  */
-@Path("/users")
+@Path("/wines")
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource
 {
