@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nl.IPSEN3.model;
+package nl.ipsen3.model;
 
 import nl.ipsen3.model.User;
 import com.fasterxml.jackson.annotation.JsonView;
