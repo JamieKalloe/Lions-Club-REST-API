@@ -44,5 +44,4 @@ public class OrderService extends BaseService<Order>{
         
         dao.delete(id);
     }
-    
 }
