@@ -51,6 +51,20 @@ public class User
 
     @JsonView(View.Public.class)
     private int role;
+    
+    public User() {}
+    
+    public User(int id) {
+        this.id = id;
+        this.gender = null;
+        this.lastName = null;
+        this.prefixLastName = null;
+        this.addressId = 0;
+        this.email = null;
+        this.referralId = 0;
+        this.notes = null;
+        
+    }
 
     public int getId() {
         return id;
