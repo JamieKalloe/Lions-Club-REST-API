@@ -20,6 +20,11 @@ public class OrderStatus {
     @JsonView(View.Public.class)
     private String name;
     
+    public OrderStatus(int id) {
+        this.id = id;
+        this.name = null;
+    }
+    
     public OrderStatus(int id, String name) {
         this.id = id;
         this.name = name;
