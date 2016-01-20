@@ -11,6 +11,7 @@ import nl.ipsen3.persistence.WineDAO;
  */
 public class WineService extends BaseService<Wine>
 {
+    
     private final WineDAO dao;
     
     public WineService(WineDAO dao)
@@ -35,7 +36,9 @@ public class WineService extends BaseService<Wine>
     
     public void update(int id, Wine wine)
     {
+
         // Eerst controleren of deze wijn wel bestaat
+
         Wine oldWine = get(id);
         
         dao.update(id, wine);

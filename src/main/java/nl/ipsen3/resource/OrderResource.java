@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,30 +16,28 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import nl.ipsen3.model.Order;
 import nl.ipsen3.View;
-import nl.ipsen3.model.Wine;
-import nl.ipsen3.service.WineService;
+import nl.ipsen3.service.OrderService;
 
 /**
- *  
- * 
- * @author Philip Wong
- * @since 19-01-16
+ *
+ * @author Jamie
  */
-@Path("/wines")
+@Path("/orders")
 @Produces(MediaType.APPLICATION_JSON)
-public class WineResource
+public class OrderResource
 {
-    private final WineService service;
+    private final OrderService service;
     
-    public WineResource(WineService service)
+    public OrderResource(OrderService service)
     {
         this.service = service;
     }
     
     @GET
     @JsonView(View.Public.class)
-    public Collection<Wine> retrieveAll()
+    public Collection<Order> retrieveAll()
     {
         return service.getAll();
     }
@@ -48,7 +45,7 @@ public class WineResource
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
-    public Wine retrieve(@PathParam("id") int id)
+    public Order retrieve(@PathParam("id") int id)
     {
         return service.get(id);
     }
@@ -56,18 +53,18 @@ public class WineResource
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
-    public void create(Wine wine)
+    public void create(Order order)
     {
-        service.add(wine);
+        service.add(order);
     }
     
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
-    public void update(@PathParam("id") int id, Wine wine)
+    public void update(@PathParam("id") int id, Order order)
     {
-        service.update(id, wine);
+        service.update(id, order);
     }
     
     @DELETE

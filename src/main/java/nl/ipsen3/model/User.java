@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
  * Meer informatie over validatie:
  *  http://hibernate.org/validator/
  * 
- * @author Peter van Vliet
+ * @author Groep1
  */
 public class User
 {
@@ -28,15 +28,15 @@ public class User
     
     @Length(min = 3, max = 100)
     @JsonView(View.Public.class)
-    private String firstName;
+    private String first_name;
+    
+    @Length(min = 0, max = 100)
+    @JsonView(View.Public.class)
+    private String prefix_last_name;
     
     @Length(min = 3, max = 100)
     @JsonView(View.Public.class)
-    private String lastName;
-    
-    @Length(min = 3, max = 100)
-    @JsonView(View.Public.class)
-    private String prefixLastName;
+    private String last_name;
     
     @Length(max = 1)
     @JsonView(View.Public.class)
@@ -85,27 +85,27 @@ public class User
     }
 
     public String getFirstName() {
-        return firstName;
+        return first_name;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.first_name = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return last_name;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.last_name = lastName;
     }
 
     public String getPrefixLastName() {
-        return prefixLastName;
+        return prefix_last_name;
     }
 
     public void setPrefixLastName(String prefixLastName) {
-        this.prefixLastName = prefixLastName;
+        this.prefix_last_name = prefixLastName;
     }
 
     public String getGender() {

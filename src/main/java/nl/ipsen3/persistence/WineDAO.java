@@ -13,6 +13,7 @@ import java.util.List;
 import nl.ipsen3.model.Wine;
 import nl.ipsen3.model.WineType;
 import nl.ipsen3.database.Database;
+import nl.ipsen3.model.Merchant;
 
 /**
  *
@@ -64,6 +65,9 @@ public class WineDAO {
     private Wine addWineToDatabase(Wine wine) {
         HashMap databaseData = new HashMap();
         databaseData.put("type_id", wine.getType().getId());
+
+        databaseData.put("wine_merchant", wine.getMerchant().getId());
+
         databaseData.put("name", wine.getName());
         databaseData.put("region", wine.getRegion());
         databaseData.put("country", wine.getCountry());
@@ -86,7 +90,7 @@ public class WineDAO {
                 
                 wine.setId(results.getInt("id"));
                 wine.setType(new WineType(results.getInt("type_id")));
-                //TODO: set merchant
+                wine.setMerchant(new Merchant(Integer.parseInt(results.getString("wine_merchant"))));
                 wine.setName(results.getString("name"));
                 wine.setCountry(results.getString("country"));
                 wine.setRegion(results.getString("region"));

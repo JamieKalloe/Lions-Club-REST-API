@@ -7,6 +7,7 @@ package nl.ipsen3.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.ipsen3.View;
+import nl.ipsen3.model.Merchant;
 
 /**
  *
@@ -25,6 +26,9 @@ public class Wine {
     
     @JsonView(View.Public.class)
     private double price;
+
+    @JsonView(View.Public.class)
+    private Merchant merchant;
     
     public Wine() {}
     
@@ -34,6 +38,7 @@ public class Wine {
         this.name = null;
         this.country = null;
         this.region = null;
+        this.merchant = null;
         this.year = 0;
         this.price = 0;
     }
@@ -75,6 +80,10 @@ public class Wine {
     public double getPrice(){
         return this.price;
     }
+    
+    public Merchant getMerchant() {
+        return this.merchant;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -111,5 +120,9 @@ public class Wine {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+    
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 }
