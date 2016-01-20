@@ -16,10 +16,9 @@ import nl.ipsen3.model.User;
 import nl.ipsen3.service.UserService;
 
 /**
- * Meer informatie over resources:
- *  https://jersey.java.net/documentation/latest/user-guide.html#jaxrs-resources
  * 
- * @author Peter van Vliet
+ * @author Jamie Kalloe
+ * @since 12-01-16
  */
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import nl.IPSEN3.model.Order;
+import nl.ipsen3.model.Order;
 import nl.ipsen3.database.Database;
 
 /**

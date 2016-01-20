@@ -65,7 +65,9 @@ public class WineDAO {
     private Wine addWineToDatabase(Wine wine) {
         HashMap databaseData = new HashMap();
         databaseData.put("type_id", wine.getType().getId());
+
         databaseData.put("wine_merchant", wine.getMerchant().getId());
+
         databaseData.put("name", wine.getName());
         databaseData.put("region", wine.getRegion());
         databaseData.put("country", wine.getCountry());

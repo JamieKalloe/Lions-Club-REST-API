@@ -8,8 +8,11 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import nl.ipsen3.database.Database;
 import nl.ipsen3.persistence.UserDAO;
+import nl.ipsen3.persistence.WineDAO;
 import nl.ipsen3.resource.UserResource;
+import nl.ipsen3.resource.WineResource;
 import nl.ipsen3.service.UserService;
+import nl.ipsen3.service.WineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,10 +48,16 @@ public class ApiApplication extends Application<ApiConfiguration>
         logger.info(String.format("Set API name to %s", name));
         
         UserDAO userDAO = new UserDAO();
+        WineDAO wineDAO = new WineDAO();
+        
         UserService userService = new UserService(userDAO);
+        WineService wineService = new WineService(wineDAO);
+        
         UserResource userResource = new UserResource(userService);
+        WineResource wineResource = new WineResource(wineService);
         
         environment.jersey().register(userResource);
+        environment.jersey().register(wineResource);
     }
     
     public static void main(String[] args) throws Exception

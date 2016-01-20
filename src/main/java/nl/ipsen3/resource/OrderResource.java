@@ -16,7 +16,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import nl.IPSEN3.model.Order;
+import nl.ipsen3.model.Order;
 import nl.ipsen3.View;
 import nl.ipsen3.service.OrderService;
 

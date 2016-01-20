@@ -6,7 +6,7 @@
 package nl.ipsen3.service;
 
 import java.util.Collection;
-import nl.IPSEN3.model.Order;
+import nl.ipsen3.model.Order;
 import nl.ipsen3.persistence.OrderDAO;
 
 /**
