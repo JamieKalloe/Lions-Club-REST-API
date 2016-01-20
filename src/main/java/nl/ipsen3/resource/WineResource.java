@@ -12,28 +12,29 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import nl.ipsen3.View;
-import nl.ipsen3.model.User;
-import nl.ipsen3.service.UserService;
+import nl.ipsen3.model.Wine;
+import nl.ipsen3.service.WineService;
 
 /**
+ *  
  * 
- * @author Jamie Kalloe
- * @since 12-01-16
+ * @author Philip Wong
+ * @since 19-01-16
  */
-@Path("/users")
+@Path("/wines")
 @Produces(MediaType.APPLICATION_JSON)
-public class UserResource
+public class WineResource
 {
-    private final UserService service;
+    private final WineService service;
     
-    public UserResource(UserService service)
+    public WineResource(WineService service)
     {
         this.service = service;
     }
     
     @GET
     @JsonView(View.Public.class)
-    public Collection<User> retrieveAll()
+    public Collection<Wine> retrieveAll()
     {
         return service.getAll();
     }
@@ -41,7 +42,7 @@ public class UserResource
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
-    public User retrieve(@PathParam("id") int id)
+    public Wine retrieve(@PathParam("id") int id)
     {
         return service.get(id);
     }
@@ -49,18 +50,18 @@ public class UserResource
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
-    public void create(User user)
+    public void create(Wine wine)
     {
-        service.add(user);
+        service.add(wine);
     }
     
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
-    public void update(@PathParam("id") int id, User user)
+    public void update(@PathParam("id") int id, Wine wine)
     {
-        service.update(id, user);
+        service.update(id, wine);
     }
     
     @DELETE

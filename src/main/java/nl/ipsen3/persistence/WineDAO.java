@@ -28,7 +28,7 @@ public class WineDAO {
         this.wines = this.getAllFromDatabase();
     }
     
-    public List<Wine> getALl() {
+    public List<Wine> getAll() {
         return wines;
     }
     
