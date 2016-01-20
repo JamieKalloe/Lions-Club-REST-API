@@ -91,6 +91,15 @@ public class Wine {
     public void setCountry(String country) {
         this.country = country;
     }
+    
+//        /**
+//     * Sets merchant.
+//     *
+//     * @param merchant the merchant
+//     */
+//    public void setMerchant(Merchant merchant) {
+//        this.merchant = merchant;
+//    }
 
     public void setRegion(String region) {
         this.region = region;
