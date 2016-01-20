@@ -1,19 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nl.ipsen3.service;
 
 import java.util.Collection;
-import nl.IPSEN3.model.Wine;
-import nl.IPSEN3.persistence.WineDAO;
+import nl.ipsen3.model.Wine;
+import nl.ipsen3.persistence.WineDAO;
 
 /**
  *
- * @author Jamie
+ * @author Philip Wong
+ * @since 19-01-16
  */
-public class WineService extends BaseService<Wine>{
+public class WineService extends BaseService<Wine>
+{
     
     private final WineDAO dao;
     
@@ -39,7 +36,9 @@ public class WineService extends BaseService<Wine>{
     
     public void update(int id, Wine wine)
     {
-        // Eerst controleren of deze gebruiker wel bestaat
+
+        // Eerst controleren of deze wijn wel bestaat
+
         Wine oldWine = get(id);
         
         dao.update(id, wine);

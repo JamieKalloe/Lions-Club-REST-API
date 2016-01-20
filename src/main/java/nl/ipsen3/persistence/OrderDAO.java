@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import nl.IPSEN3.model.Order;
+import nl.ipsen3.model.Order;
 import nl.ipsen3.database.Database;
 
 /**
@@ -92,7 +92,7 @@ public class OrderDAO {
         HashMap databaseData = new HashMap();
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        databaseData.put("guest_id", order.getUser().getId());
+        databaseData.put("guest_id", order.getUserId());
         databaseData.put("status_id", order.getOrderStatus().getId());
         databaseData.put("order_date", sdf.format(new Date()));
         
@@ -102,7 +102,7 @@ public class OrderDAO {
     private void updateOrderFromDatabase(Order order) {
         HashMap databaseData = new HashMap();
         
-        databaseData.put("guest_id", order.getUser().getId());
+        databaseData.put("guest_id", order.getUserId());
         databaseData.put("status_id", order.getOrderStatus().getId());
         
         databaseInstance.update("order", order.getId(), databaseData);

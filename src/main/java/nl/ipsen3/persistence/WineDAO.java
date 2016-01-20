@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nl.IPSEN3.persistence;
+package nl.ipsen3.persistence;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import nl.IPSEN3.model.Wine;
-import nl.IPSEN3.model.WineType;
+import nl.ipsen3.model.Wine;
+import nl.ipsen3.model.WineType;
 import nl.ipsen3.database.Database;
 import nl.ipsen3.model.Merchant;
 
@@ -65,7 +65,9 @@ public class WineDAO {
     private Wine addWineToDatabase(Wine wine) {
         HashMap databaseData = new HashMap();
         databaseData.put("type_id", wine.getType().getId());
+
         databaseData.put("wine_merchant", wine.getMerchant().getId());
+
         databaseData.put("name", wine.getName());
         databaseData.put("region", wine.getRegion());
         databaseData.put("country", wine.getCountry());

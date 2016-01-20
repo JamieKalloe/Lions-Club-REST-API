@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nl.IPSEN3.model;
+package nl.ipsen3.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.ipsen3.View;
@@ -100,6 +100,15 @@ public class Wine {
     public void setCountry(String country) {
         this.country = country;
     }
+    
+//        /**
+//     * Sets merchant.
+//     *
+//     * @param merchant the merchant
+//     */
+//    public void setMerchant(Merchant merchant) {
+//        this.merchant = merchant;
+//    }
 
     public void setRegion(String region) {
         this.region = region;

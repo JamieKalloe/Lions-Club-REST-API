@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,21 +17,20 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import nl.IPSEN3.model.Wine;
 import nl.ipsen3.View;
-import nl.ipsen3.model.User;
-import nl.ipsen3.service.UserService;
+import nl.ipsen3.model.Wine;
 import nl.ipsen3.service.WineService;
 
 /**
- *
- * @author Jamie
+ *  
+ * 
+ * @author Philip Wong
+ * @since 19-01-16
  */
-
 @Path("/wines")
 @Produces(MediaType.APPLICATION_JSON)
-public class WineResource {
-    
+public class WineResource
+{
     private final WineService service;
     
     public WineResource(WineService service)

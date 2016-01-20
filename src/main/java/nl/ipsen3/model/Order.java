@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nl.IPSEN3.model;
+package nl.ipsen3.model;
 
 import nl.ipsen3.model.User;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -20,7 +20,7 @@ public class Order {
     private int id;
     
     @JsonView(View.Public.class)
-    private User user;
+    private int userId;
     
     @JsonView(View.Public.class)
     private OrderStatus orderStatus;
@@ -36,7 +36,7 @@ public class Order {
     
     public Order(int id, int userId, int orderStatusId) {
         this.id = id;
-        this.user = new User(userId);
+        this.userId = userId;
         this.orderStatus = new OrderStatus(orderStatusId);
         this.totalAmount = 0;
         this.wines = null;
@@ -56,8 +56,8 @@ public class Order {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
     public OrderStatus getOrderStatus() {
@@ -72,8 +72,8 @@ public class Order {
         this.id = id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {

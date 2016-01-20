@@ -19,5 +19,5 @@ assets:
 
       
 server:
-  rootPath: /IPSEN3-Lions-API/*
+  rootPath: /api/*
   adminContextPath: /admin
