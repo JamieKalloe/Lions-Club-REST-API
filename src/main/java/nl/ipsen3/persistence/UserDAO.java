@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  *
- * @author Peter van Vliet
+ * @author 
  */
 public class UserDAO
 {

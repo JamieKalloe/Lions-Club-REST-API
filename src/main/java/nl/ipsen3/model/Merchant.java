@@ -22,35 +22,35 @@ public class Merchant{
         this.id = id;
     }
     
-     
+    public Merchant(int id, String name, String email, int  addressId) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.address = new Address(addressId);
+    }
      
     public int getId() {
         return id;
     }
 
-
     public String getName() {
         return name;
     }
-
 
     /**
      * Gets email.
      *
      * @return the email
      */
-
     public String getEmail() {
         return email;
     }
-
 
     /**
      * Gets address.
      *
      * @return the address
      */
-
     public Address getAddress() {
         return address;
     }
@@ -64,10 +64,10 @@ public class Merchant{
      *
      * @param name the name
      */
-
     public void setName(String name) {
         this.name = name;
     }
+
 
     /**
      * Sets address.

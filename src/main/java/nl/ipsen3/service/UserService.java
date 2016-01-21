@@ -6,7 +6,7 @@ import nl.ipsen3.persistence.UserDAO;
 
 /**
  *
- * @author Peter van Vliet
+ * @author 
  */
 public class UserService extends BaseService<User>
 {

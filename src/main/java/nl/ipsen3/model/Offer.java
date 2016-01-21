@@ -28,6 +28,8 @@ public class Offer {
     @JsonView(View.Public.class)
     private ArrayList<Wine> wines;
     
+    public Offer() {}
+    
     public Offer(int id) {
         this.name = null;
         this.startDate = null;

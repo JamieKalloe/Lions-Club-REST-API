@@ -25,7 +25,20 @@ public class Wine {
 
     private Merchant merchant;
     
+    public Wine() {}
+   
     private WineType type;
+    
+    public Wine(int id) {
+        this.id = id;
+        this.type = null;
+        this.name = null;
+        this.country = null;
+        this.region = null;
+        this.merchant = null;
+        this.year = 0;
+        this.price = 0;
+    }
     
     public int getId() {
         return this.id;
