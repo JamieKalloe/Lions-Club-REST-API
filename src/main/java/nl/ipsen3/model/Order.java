@@ -34,6 +34,10 @@ public class Order {
     @JsonView(View.Public.class)
     private Date date;
     
+    public Order() {
+        
+    }
+    
     public Order(int id, int userId, int orderStatusId) {
         this.id = id;
         this.userId = userId;
