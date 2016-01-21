@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author Peter van Vliet
+ * @author 
  */
 public class ApiApplication extends Application<ApiConfiguration>
 {

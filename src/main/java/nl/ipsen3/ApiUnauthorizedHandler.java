@@ -6,7 +6,7 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author Peter van Vliet
+ * @author 
  */
 public class ApiUnauthorizedHandler implements UnauthorizedHandler
 {

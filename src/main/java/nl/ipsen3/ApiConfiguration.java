@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
- * @author Peter van Vliet
+ * @author 
  */
 public class ApiConfiguration extends Configuration implements AssetsBundleConfiguration
 {
