@@ -7,10 +7,16 @@ import io.dropwizard.bundles.assets.ConfiguredAssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import nl.ipsen3.database.Database;
+import nl.ipsen3.persistence.AddressDAO;
+import nl.ipsen3.persistence.OrderDAO;
 import nl.ipsen3.persistence.UserDAO;
 import nl.ipsen3.persistence.WineDAO;
+import nl.ipsen3.resource.AddressResource;
+import nl.ipsen3.resource.OrderResource;
 import nl.ipsen3.resource.UserResource;
 import nl.ipsen3.resource.WineResource;
+import nl.ipsen3.service.AddressService;
+import nl.ipsen3.service.OrderService;
 import nl.ipsen3.service.UserService;
 import nl.ipsen3.service.WineService;
 import org.slf4j.Logger;
@@ -49,15 +55,23 @@ public class ApiApplication extends Application<ApiConfiguration>
         
         UserDAO userDAO = new UserDAO();
         WineDAO wineDAO = new WineDAO();
+        OrderDAO orderDAO = new OrderDAO();
+        AddressDAO addressDAO = new AddressDAO();
         
         UserService userService = new UserService(userDAO);
         WineService wineService = new WineService(wineDAO);
+        OrderService orderService = new OrderService(orderDAO);
+        AddressService addressService = new AddressService(addressDAO);
         
         UserResource userResource = new UserResource(userService);
         WineResource wineResource = new WineResource(wineService);
+        OrderResource orderResource = new OrderResource(orderService);
+        AddressResource addressResource = new AddressResource(addressService);
         
         environment.jersey().register(userResource);
         environment.jersey().register(wineResource);
+        environment.jersey().register(orderResource);
+        environment.jersey().register(addressResource);
     }
     
     public static void main(String[] args) throws Exception
