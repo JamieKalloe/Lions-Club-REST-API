@@ -61,25 +61,25 @@ public class ApiApplication extends Application<ApiConfiguration>
         WineDAO wineDAO = new WineDAO();
         OrderDAO orderDAO = new OrderDAO();
         AddressDAO addressDAO = new AddressDAO();
-        OfferDAO offerDAO = new OfferDAO();
+//        OfferDAO offerDAO = new OfferDAO();
         
         UserService userService = new UserService(userDAO);
         WineService wineService = new WineService(wineDAO);
         OrderService orderService = new OrderService(orderDAO);
         AddressService addressService = new AddressService(addressDAO);
-        OfferService offerService = new OfferService(offerDAO);
+//        OfferService offerService = new OfferService(offerDAO);
         
         UserResource userResource = new UserResource(userService);
         WineResource wineResource = new WineResource(wineService);
         OrderResource orderResource = new OrderResource(orderService);
         AddressResource addressResource = new AddressResource(addressService);
-        OfferResource offerResource = new OfferResource(offerService);
+//        OfferResource offerResource = new OfferResource(offerService);
         
         environment.jersey().register(userResource);
         environment.jersey().register(wineResource);
         environment.jersey().register(orderResource);
         environment.jersey().register(addressResource);
-        environment.jersey().register(offerResource);
+//        environment.jersey().register(offerResource);
     }
     
     public static void main(String[] args) throws Exception
