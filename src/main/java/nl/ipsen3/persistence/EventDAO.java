@@ -55,7 +55,7 @@ public class EventDAO {
     public void update(int id, Event event) {
         Event oldEvent = get(id);
         event.setId(id);
-        this.update(id, oldEvent);
+        this.updateEventFromDatabase(oldEvent);
         int idInList = events.indexOf(oldEvent);
         events.set(idInList, event);
     }
