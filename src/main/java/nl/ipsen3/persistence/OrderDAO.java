@@ -96,6 +96,8 @@ public class OrderDAO {
         databaseData.put("status_id", order.getOrderStatus().getId());
         databaseData.put("order_date", sdf.format(new Date()));
         
+        int id = databaseInstance.insertInto("order", databaseData);
+        order.setId(id);
         return order;
     }
     
