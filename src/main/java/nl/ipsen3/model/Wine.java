@@ -7,7 +7,6 @@ package nl.ipsen3.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.ipsen3.View;
-import nl.ipsen3.model.Merchant;
 
 /**
  *
@@ -16,49 +15,28 @@ import nl.ipsen3.model.Merchant;
 public class Wine {
     
     @JsonView(View.Public.class)
-    private int id, year;
-    
-    @JsonView(View.Public.class)
-    private WineType type;
-    
+    private int id, year, typeId, merchantId;
+      
     @JsonView(View.Public.class)
     private String name, country, region;
     
     @JsonView(View.Public.class)
     private double price;
 
-    @JsonView(View.Public.class)
     private Merchant merchant;
     
-    public Wine() {}
+    private WineType type;
     
-    public Wine(int id) {
-        this.id = id;
-        this.type = null;
-        this.name = null;
-        this.country = null;
-        this.region = null;
-        this.merchant = null;
-        this.year = 0;
-        this.price = 0;
-    }
-    
-    public Wine(int id, WineType type, String name, String country, String region, int year, double price) {
-        this.id = id;
-        this.type = type;
-        this.name = name;
-        this.country = country;
-        this.region = region;
-        this.year = year;
-        this.price = price;
-    }
-
     public int getId() {
         return this.id;
     }
     
+    public Merchant getMerchant() {
+        return new Merchant(this.merchantId);
+    }
+    
     public WineType getType() {
-        return this.type;
+        return new WineType(this.typeId);
     }
     
     public String getName() {
@@ -81,17 +59,21 @@ public class Wine {
         return this.price;
     }
     
-    public Merchant getMerchant() {
-        return this.merchant;
-    }
+//    public Merchant getMerchant() {
+//        return this.merchant;
+//    }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setType(WineType type) {
-        this.type = type;
-    }
+   public void setTypeId(int typeId){
+       this.typeId = typeId;
+   }
+   
+   public void setType(WineType type){
+       this.type = type;
+   }
 
     public void setName(String name) {
         this.name = name;
@@ -101,14 +83,17 @@ public class Wine {
         this.country = country;
     }
     
-//        /**
-//     * Sets merchant.
-//     *
-//     * @param merchant the merchant
-//     */
-//    public void setMerchant(Merchant merchant) {
-//        this.merchant = merchant;
-//    }
+    public void setMerchantId(int merchantId) {
+        this.merchantId = merchantId;
+    }
+        /**
+     * Sets merchant.
+     *
+     * @param merchant the merchant
+     */
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
+    }
 
     public void setRegion(String region) {
         this.region = region;
@@ -120,9 +105,5 @@ public class Wine {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-    
-    public void setMerchant(Merchant merchant) {
-        this.merchant = merchant;
     }
 }
