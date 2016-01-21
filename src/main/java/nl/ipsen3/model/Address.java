@@ -20,6 +20,8 @@ public class Address {
     @JsonView(View.Public.class)
     private String zipCode, street, houseNumber, country, city;
     
+    public Address() {}
+    
     public Address(int id, String zipCode, String street, String houseNumber, String country, String city) {
         this.id = id;
         this.zipCode = zipCode;
