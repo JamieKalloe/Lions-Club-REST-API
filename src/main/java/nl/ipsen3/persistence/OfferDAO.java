@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nl.IPSEN3.persistence;
+package nl.ipsen3.persistence;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
