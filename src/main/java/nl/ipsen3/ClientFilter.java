@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 
- * @author Peter van Vliet
+ * @author 
  */
 public class ClientFilter implements Filter
 {

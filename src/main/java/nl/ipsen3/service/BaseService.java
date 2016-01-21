@@ -4,7 +4,7 @@ import javax.ws.rs.NotFoundException;
 
 /**
  *
- * @author Peter van Vliet
+ * @author 
  * @param <T>
  */
 public class BaseService<T>
