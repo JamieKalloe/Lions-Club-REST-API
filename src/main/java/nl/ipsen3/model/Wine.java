@@ -72,9 +72,6 @@ public class Wine {
         return this.price;
     }
     
-//    public Merchant getMerchant() {
-//        return this.merchant;
-//    }
 
     public void setId(int id) {
         this.id = id;

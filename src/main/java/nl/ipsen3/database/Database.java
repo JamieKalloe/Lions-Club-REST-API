@@ -154,7 +154,7 @@ public class Database {
         }
         int result = updateDatabase(queryTable + queryValues + ")", Statement.RETURN_GENERATED_KEYS);
         
-        System.out.print(queryTable + queryValues + ")");
+        System.out.print(queryTable + queryValues + ")" + "  :::: " + result);
  
         return result;
     }

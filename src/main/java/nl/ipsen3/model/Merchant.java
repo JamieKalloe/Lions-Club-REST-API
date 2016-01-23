@@ -10,25 +10,17 @@ import nl.ipsen3.View;
 public class Merchant{
     
      @JsonView(View.Public.class)
-    private int id;
+    private int id, addressId;
     
     @JsonView(View.Public.class)
     private String name, email;
     
-    @JsonView(View.Public.class)
-    private Address address;
-
+    public Merchant(){}
+       
      public Merchant(int id) {
         this.id = id;
     }
-    
-    public Merchant(int id, String name, String email, int  addressId) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.address = new Address(addressId);
-    }
-     
+        
     public int getId() {
         return id;
     }
@@ -51,8 +43,8 @@ public class Merchant{
      *
      * @return the address
      */
-    public Address getAddress() {
-        return address;
+    public int getAddressId() {
+        return this.addressId;
     }
     
     public void setId(int id) {
@@ -74,8 +66,8 @@ public class Merchant{
      *
      * @param address the address
      */
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
     }
 
     /**
