@@ -5,6 +5,7 @@
  */
 package nl.ipsen3.service;
 
+
 import java.util.Collection;
 import nl.ipsen3.persistence.OfferDAO;
 import nl.ipsen3.model.Offer;
@@ -29,11 +30,12 @@ public class OfferService extends BaseService<Offer>{
         return requireResult(dao.get(id));
     }
     
-    public void add(Offer offer) {
+    public void add(Offer offer){
         dao.add(offer);
+        System.out.print("OfferService");
     }
     
-    public void update(int id, Offer offer) {
+    public void update(int id, Offer offer){
         Offer oldOffer = get(id);
         
         dao.update(id, offer);

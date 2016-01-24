@@ -10,6 +10,7 @@ import java.util.HashMap;
 //Imports for SQL results
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import nl.ipsen3.ApiConfiguration;
 /**
  *
  * @author 

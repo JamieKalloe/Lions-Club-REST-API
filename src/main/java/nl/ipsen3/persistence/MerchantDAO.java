@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import nl.ipsen3.ApiConfiguration;
 import nl.ipsen3.database.Database;
 import nl.ipsen3.model.Merchant;
 

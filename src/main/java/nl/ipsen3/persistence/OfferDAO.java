@@ -7,12 +7,15 @@ package nl.ipsen3.persistence;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import nl.ipsen3.ApiConfiguration;
 import nl.ipsen3.database.Database;
 import nl.ipsen3.model.Offer;
-import nl.ipsen3.model.Wine;
+
 
 /**
  *
@@ -29,7 +32,7 @@ public class OfferDAO {
     }
     
     public List<Offer> getAll() {
-        return this.offers;
+          return this.offers;
     }
     
     public Offer get(int id) {
@@ -47,12 +50,12 @@ public class OfferDAO {
         return null;
     }
     
-    public void add(Offer offer) {
+    public void add(Offer offer){
         offer = this.addOfferToDatabase(offer);
         offers.add(offer);
     }
     
-    public void update(int id, Offer offer) {
+    public void update(int id, Offer offer){
         Offer oldOffer = get(id);
         oldOffer.setId(id);
         
@@ -79,11 +82,7 @@ public class OfferDAO {
                 offer.setStartDate(results.getDate("start_date"));
                 offer.setEndDate(results.getDate("end_date"));
                 
-                //TODO: correctly set wines...
-                Wine wine = new Wine(results.getInt("wine_id"));
-                ArrayList<Wine> wines = new ArrayList<>();
-                wines.add(wine);
-                offer.setWines(wines);
+                offerList.add(offer);  
             }
         } catch(SQLException e) {
             e.printStackTrace();
@@ -92,14 +91,14 @@ public class OfferDAO {
         return offerList;
     }
     
-    private Offer addOfferToDatabase(Offer offer) {
+    private Offer addOfferToDatabase(Offer offer){
         HashMap databaseData = new HashMap();
         
-        databaseData.put("id", offer.getId());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         databaseData.put("name", offer.getName());
-        databaseData.put("start_date", offer.getStartDate());
-        databaseData.put("end_date", offer.getEndDate());
-        databaseData.put("wine_id", offer.getWines().get(0).getId());
+        databaseData.put("start_date", sdf.format(offer.getStartDate()));
+        databaseData.put("end_date", sdf.format(offer.getEndDate()));
+        
         
         int id = databaseInstance.insertInto("offer", databaseData);
         offer.setId(id);
@@ -111,15 +110,14 @@ public class OfferDAO {
         databaseInstance.delete("offer", offer.getId());
     }
     
-    private void updateOfferFromDatabase(Offer offer) {
+    private void updateOfferFromDatabase(Offer offer){
         HashMap databaseData = new HashMap();
         
         databaseData.put("id", offer.getId());
         databaseData.put("name", offer.getName());
         databaseData.put("start_date", offer.getStartDate());
         databaseData.put("end_date", offer.getEndDate());
-        databaseData.put("wine_id", offer.getWines().get(0).getId());
-        
+          
         databaseInstance.update("offer", offer.getId(), databaseData);
     }
     

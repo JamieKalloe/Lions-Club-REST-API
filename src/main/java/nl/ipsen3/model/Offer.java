@@ -6,7 +6,6 @@
 package nl.ipsen3.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import java.util.ArrayList;
 import java.util.Date;
 import nl.ipsen3.View;
 
@@ -25,24 +24,21 @@ public class Offer {
     @JsonView(View.Public.class)
     private Date startDate, endDate;
     
-    @JsonView(View.Public.class)
-    private ArrayList<Wine> wines;
     
     public Offer() {}
     
     public Offer(int id) {
+        this.id = id;
         this.name = null;
         this.startDate = null;
         this.endDate = null;
-        this.wines = null;
     }
     
-    public Offer(int id, String name, Date startDate, Date endDate, ArrayList<Wine> wines) {
+    public Offer(int id, String name, Date startDate, Date endDate) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.wines = wines;
     }
 
     public int getId() {
@@ -53,16 +49,13 @@ public class Offer {
         return name;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getStartDate(){
+          return startDate;
     }
 
-    public Date getEndDate() {
+    public Date getEndDate(){
+       
         return endDate;
-    }
-
-    public ArrayList<Wine> getWines() {
-        return wines;
     }
 
     public void setId(int id) {
@@ -78,10 +71,6 @@ public class Offer {
     }
 
     public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public void setWines(ArrayList<Wine> wines) {
-        this.wines = wines;
+       this.endDate = endDate;
     }
 }

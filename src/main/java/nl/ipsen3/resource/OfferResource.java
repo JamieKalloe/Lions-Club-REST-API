@@ -39,7 +39,7 @@ public class OfferResource
     @JsonView(View.Public.class)
     public Collection<Offer> retrieveAll()
     {
-        return service.getAll();
+        return service.getAll();   
     }
     
     @GET
