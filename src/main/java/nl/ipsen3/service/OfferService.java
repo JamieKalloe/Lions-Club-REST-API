@@ -32,7 +32,6 @@ public class OfferService extends BaseService<Offer>{
     
     public void add(Offer offer){
         dao.add(offer);
-        System.out.print("OfferService");
     }
     
     public void update(int id, Offer offer){

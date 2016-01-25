@@ -20,7 +20,7 @@ public class Order {
     private int id;
     
     @JsonView(View.Public.class)
-    private int userId;
+    private int userId, offerId;
     
     @JsonView(View.Public.class)
     private OrderStatus orderStatus;
@@ -33,6 +33,8 @@ public class Order {
     
     @JsonView(View.Public.class)
     private Date date;
+    
+    private Offer offer;
     
     public Order() {
         
@@ -71,6 +73,14 @@ public class Order {
     public ArrayList<Wine> getWines() {
         return wines;
     }
+    
+    public int getOfferId() {
+       return this.offerId;
+    }
+     
+    public Offer getOffer() {
+       return this.offer;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -96,5 +106,11 @@ public class Order {
         this.date = date;
     }
     
-    
+     public void setOfferId(int offerId) {
+        this.offerId = offerId;
+    }
+     
+      public void setOfferId(Offer offerId) {
+        this.offer = offer;
+    }
 }

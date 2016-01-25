@@ -98,8 +98,7 @@ public class OfferDAO {
         databaseData.put("name", offer.getName());
         databaseData.put("start_date", sdf.format(offer.getStartDate()));
         databaseData.put("end_date", sdf.format(offer.getEndDate()));
-        
-        
+                
         int id = databaseInstance.insertInto("offer", databaseData);
         offer.setId(id);
         
