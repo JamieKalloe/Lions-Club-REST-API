@@ -9,12 +9,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import nl.ipsen3.ApiConfiguration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nl.ipsen3.model.Wine;
 import nl.ipsen3.model.WineType;
 import nl.ipsen3.database.Database;
 import nl.ipsen3.model.Merchant;
+import nl.ipsen3.model.OfferWine;
 
 /**
  *
@@ -22,21 +25,25 @@ import nl.ipsen3.model.Merchant;
  */
 public class WineDAO {
     
-    private final List<Wine> wines;
+    private final List<Wine> allWines;
     private final Database databaseInstance;
     
     public WineDAO() {
         this.databaseInstance = Database.getInstance();
-        this.wines = this.getAllFromDatabase();
+        this.allWines = this.getAllFromDatabase();
     }
     
     public List<Wine> getAll() {
-        return wines;
+        return allWines;
     }
     
+    public List<Wine> getAllForOffer(int offerId) {
+        return getAllWinesForOfferFromDatabase(offerId);
+    }
+      
     public Wine get(int id) {
         
-        for(Wine wine : wines) {
+        for(Wine wine : allWines) {
             if(wine.getId() == id) {
                 return wine;
             }
@@ -46,17 +53,17 @@ public class WineDAO {
     }
     
     public void add(Wine wine) {
-        wines.add(addWineToDatabase(wine));
+        allWines.add(addWineToDatabase(wine));
     }
     
     public void update(int id, Wine wine) {
-        wines.set(id, wine);
+        allWines.set(id, wine);
     }
     
     public void delete(int id) {
         Wine wine = this.get(id);
         this.removeFromDatabase(wine);
-        wines.remove(wine);
+        allWines.remove(wine);
     }
     
     private void removeFromDatabase(Wine wine) {
@@ -105,4 +112,34 @@ public class WineDAO {
         return wines;
     }
     
-}
+     private List<Wine> getAllWinesForOfferFromDatabase(int offerId) {
+          
+        List<Wine> wines = new ArrayList();
+       
+        OfferWineDAO offerWineDAO = new OfferWineDAO();
+        List<OfferWine> offerWineList = offerWineDAO.getAllForOfferWinesFromDatabase(offerId);
+        
+        offerWineList.forEach((offerWine -> {
+            try {
+                Wine wine = new Wine();
+                ResultSet results = databaseInstance.select("wine","id=" + offerWine.getWineId());
+                
+                wine.setId(results.getInt(offerWine.getWineId()));
+                wine.setType(new WineType(results.getInt("type_id")));
+                wine.setMerchant(new Merchant(Integer.parseInt(results.getString("merchant_id"))));
+                wine.setName(results.getString("name"));
+                wine.setCountry(results.getString("country"));
+                wine.setRegion(results.getString("region"));
+                wine.setYear(results.getInt("year"));
+                wine.setPrice(results.getDouble("price"));
+                wines.add(wine);
+            } catch (SQLException ex) {
+                Logger.getLogger(WineDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }));
+       
+     
+         return wines;
+     }
+   }
+ 

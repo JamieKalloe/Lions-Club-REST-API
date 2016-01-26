@@ -49,7 +49,7 @@ public class OfferDAO {
         
         return null;
     }
-    
+          
     public void add(Offer offer){
         offer = this.addOfferToDatabase(offer);
         offers.add(offer);

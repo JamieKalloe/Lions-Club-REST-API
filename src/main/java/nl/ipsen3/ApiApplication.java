@@ -11,17 +11,20 @@ import nl.ipsen3.persistence.AddressDAO;
 import nl.ipsen3.persistence.MerchantDAO;
 import nl.ipsen3.persistence.OrderDAO;
 import nl.ipsen3.persistence.OfferDAO;
+import nl.ipsen3.persistence.OfferWineDAO;
 import nl.ipsen3.persistence.UserDAO;
 import nl.ipsen3.persistence.WineDAO;
 import nl.ipsen3.resource.AddressResource;
 import nl.ipsen3.resource.MerchantResource;
 import nl.ipsen3.resource.OrderResource;
 import nl.ipsen3.resource.OfferResource;
+import nl.ipsen3.resource.OfferWineResource;
 import nl.ipsen3.resource.UserResource;
 import nl.ipsen3.resource.WineResource;
 import nl.ipsen3.service.AddressService;
 import nl.ipsen3.service.MerchantService;
 import nl.ipsen3.service.OfferService;
+import nl.ipsen3.service.OfferWineService;
 import nl.ipsen3.service.OrderService;
 import nl.ipsen3.service.UserService;
 import nl.ipsen3.service.WineService;
@@ -30,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author 
+ * @author Groep 1 
  */
 public class ApiApplication extends Application<ApiConfiguration>
 {
@@ -63,6 +66,7 @@ public class ApiApplication extends Application<ApiConfiguration>
         WineDAO wineDAO = new WineDAO();
         MerchantDAO merchantDAO = new MerchantDAO();
         OrderDAO orderDAO = new OrderDAO();
+        OfferWineDAO offerWineDAO = new OfferWineDAO();
         AddressDAO addressDAO = new AddressDAO();
         OfferDAO offerDAO = new OfferDAO();
         
@@ -72,6 +76,7 @@ public class ApiApplication extends Application<ApiConfiguration>
         OrderService orderService = new OrderService(orderDAO);
         AddressService addressService = new AddressService(addressDAO);
         OfferService offerService = new OfferService(offerDAO);
+        OfferWineService offerWineService = new OfferWineService(offerWineDAO);
         
         UserResource userResource = new UserResource(userService);
         WineResource wineResource = new WineResource(wineService);
@@ -79,6 +84,7 @@ public class ApiApplication extends Application<ApiConfiguration>
         OrderResource orderResource = new OrderResource(orderService);
         AddressResource addressResource = new AddressResource(addressService);
         OfferResource offerResource = new OfferResource(offerService);
+        OfferWineResource offerWineResource = new OfferWineResource(offerWineService);
         
         environment.jersey().register(userResource);
         environment.jersey().register(wineResource);
@@ -86,6 +92,8 @@ public class ApiApplication extends Application<ApiConfiguration>
         environment.jersey().register(orderResource);
         environment.jersey().register(addressResource);
         environment.jersey().register(offerResource);
+        environment.jersey().register(offerWineResource);
+
     }
     
     public static void main(String[] args) throws Exception

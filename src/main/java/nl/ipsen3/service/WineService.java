@@ -24,6 +24,11 @@ public class WineService extends BaseService<Wine>
         return dao.getAll();
     }
     
+     public Collection<Wine> getAllForOffer(int offerId)
+    {
+        return dao.getAllForOffer(offerId);
+    }
+    
     public Wine get(int id)
     {
         return requireResult(dao.get(id));

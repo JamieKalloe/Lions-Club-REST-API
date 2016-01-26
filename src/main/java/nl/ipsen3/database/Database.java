@@ -93,6 +93,7 @@ public class Database {
     public ResultSet select(String from, String where) {
         String query = "SELECT * FROM `" + from + "` WHERE " + where;
         ResultSet resultSet = queryDatabase(query);
+        System.out.println(query);
         return resultSet;
     }
 

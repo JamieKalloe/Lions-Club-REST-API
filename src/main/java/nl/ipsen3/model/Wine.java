@@ -15,7 +15,7 @@ import nl.ipsen3.View;
 public class Wine {
     
     @JsonView(View.Public.class)
-    private int id, year, typeId, merchantId;
+    private int id, year, typeId, merchantId, offerId;
       
     @JsonView(View.Public.class)
     private String name, country, region;
@@ -42,6 +42,10 @@ public class Wine {
     
     public int getId() {
         return this.id;
+    }
+    
+    public int getOfferId() {
+        return this.offerId;
     }
     
     public Merchant getMerchant() {
@@ -105,6 +109,10 @@ public class Wine {
         this.merchant = merchant;
     }
 
+    public void setOfferId(int offerId) {
+        this.offerId = offerId;
+    }
+    
     public void setRegion(String region) {
         this.region = region;
     }
