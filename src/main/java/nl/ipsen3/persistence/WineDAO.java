@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -119,24 +118,25 @@ public class WineDAO {
         OfferWineDAO offerWineDAO = new OfferWineDAO();
         List<OfferWine> offerWineList = offerWineDAO.getAllForOfferWinesFromDatabase(offerId);
         
-        offerWineList.forEach((offerWine -> {
+        offerWineList.forEach(offerWine -> {
+              ResultSet results = databaseInstance.select("wine","id=" + offerWine.getWineId());
             try {
-                Wine wine = new Wine();
-                ResultSet results = databaseInstance.select("wine","id=" + offerWine.getWineId());
-                
-                wine.setId(results.getInt(offerWine.getWineId()));
-                wine.setType(new WineType(results.getInt("type_id")));
-                wine.setMerchant(new Merchant(Integer.parseInt(results.getString("merchant_id"))));
-                wine.setName(results.getString("name"));
-                wine.setCountry(results.getString("country"));
-                wine.setRegion(results.getString("region"));
-                wine.setYear(results.getInt("year"));
-                wine.setPrice(results.getDouble("price"));
-                wines.add(wine);
+                while(results.next()){
+                    Wine wine = new Wine();
+                    wine.setId(results.getInt(offerWine.getWineId()));
+                    wine.setType(new WineType(results.getInt("type_id")));
+                    wine.setMerchant(new Merchant(Integer.parseInt(results.getString("merchant_id"))));
+                    wine.setName(results.getString("name"));
+                    wine.setCountry(results.getString("country"));
+                    wine.setRegion(results.getString("region"));
+                    wine.setYear(results.getInt("year"));
+                    wine.setPrice(results.getDouble("price"));
+                    wines.add(wine);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(WineDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }));
+        });
        
      
          return wines;
