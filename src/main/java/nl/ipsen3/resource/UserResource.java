@@ -1,6 +1,7 @@
 package nl.ipsen3.resource;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import io.dropwizard.auth.Auth;
 import java.util.Collection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -68,5 +69,13 @@ public class UserResource
     public void delete(@PathParam("id") int id)
     {
         service.delete(id);
+    }
+    
+    @GET
+    @Path("/me")
+    @JsonView(View.Private.class)
+    public User authenticate(@Auth User authenticator)
+    {
+        return authenticator;
     }
 }
