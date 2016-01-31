@@ -123,7 +123,7 @@ public class WineDAO {
             try {
                 while(results.next()){
                     Wine wine = new Wine();
-                    wine.setId(results.getInt(offerWine.getWineId()));
+                    wine.setId(results.getInt("id"));
                     wine.setType(new WineType(results.getInt("type_id")));
                     wine.setMerchant(new Merchant(Integer.parseInt(results.getString("merchant_id"))));
                     wine.setName(results.getString("name"));

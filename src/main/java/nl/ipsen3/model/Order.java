@@ -16,11 +16,9 @@ import nl.ipsen3.View;
  * @author Jamie
  */
 public class Order {
-    
-    private int id;
-    
+        
     @JsonView(View.Public.class)
-    private int userId, offerId;
+    private int id, userId, offerId;
     
     @JsonView(View.Public.class)
     private OrderStatus orderStatus;

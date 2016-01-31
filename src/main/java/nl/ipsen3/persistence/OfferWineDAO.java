@@ -101,7 +101,7 @@ public class OfferWineDAO {
         databaseData.put("offer_id", offerWine.getOfferId());
         databaseData.put("wine_id", offerWine.getWineId());
                 
-        databaseInstance.insertInto("offer", databaseData);
+        databaseInstance.insertInto("offer_wine", databaseData);
              
         return offerWine;
     }
