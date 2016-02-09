@@ -27,6 +27,10 @@ public class Mail {
         this.attachment = attachment;
     }
 
+    public Mail() {
+        
+    }
+
     public String getRecipient() {
         return recipient;
     }
