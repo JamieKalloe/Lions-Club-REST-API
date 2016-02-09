@@ -6,8 +6,12 @@
 package nl.IPSEN3.service;
 
 import java.util.Properties;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
 import nl.IPSEN3.model.MailType;
 import nl.ipsen3.model.Mail;
+import nl.ipsen3.model.MailMessage;
 import nl.ipsen3.service.UserService;
 
 /**
@@ -43,5 +47,46 @@ public class MailService {
         mailProperties.put(this.propertyAuth, "true");
         mailProperties.put(this.propertyStartTls, "true");
         mailProperties.put(this.propertySSL, "true");
+    }
+    
+    public void send(Mail mail) throws Exception {
+
+        this.mail = mail;
+        Session session = Session.getInstance(mailProperties,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(smtpUsername, smtpPassword);
+                    }
+                });
+
+        session.setDebug(true);
+
+        MailMessage message;
+
+        if(mail.getAttachment() == null || mail.getAttachment().isEmpty()) {
+            message = new MailMessage(
+                    session,
+                    this.smtpUsername,
+                    mail.getRecipient(),
+                    mail.getSubject(),
+                    mail.getContent()
+            );
+        } else {
+            message = new MailMessage(
+                    session,
+                    this.smtpUsername,
+                    mail.getRecipient(),
+                    mail.getSubject(),
+                    mail.getContent(),
+                    mail.getAttachment()
+            );
+        }
+
+        Transport transport = session.getTransport(this.transportType);
+        transport.connect(this.smtpHost, this.smtpPort, this.smtpUsername, this.smtpPassword);
+        transport.sendMessage(message, message.getAllRecipients());
+
+        System.out.println("MailMessage was succesfuly sent.");
+        transport.close();
     }
 }
