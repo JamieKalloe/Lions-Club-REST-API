@@ -17,9 +17,13 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import nl.ipsen3.model.Address;
+import nl.ipsen3.model.Merchant;
 import nl.ipsen3.model.User;
 import nl.ipsen3.model.WineOrder;
+import nl.ipsen3.persistence.AddressDAO;
 import nl.ipsen3.persistence.UserDAO;
+import nl.ipsen3.service.MerchantService;
 
 
 /**
@@ -44,7 +48,7 @@ public class InvoiceGenerator {
         System.out.println("invoice generator orderID: " + order.getId());
         Document document = new Document();
         Font defaultFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(System.getProperty("user.dir") + "/src/IPSEN2/invoice/"
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(System.getProperty("user.dir") + "/src/IPSEN3-Lions-API/invoice/"
                 + new SimpleDateFormat("dd-MM-yyyy").format(invoiceDate) + " - " + order.getId() + ".pdf"));
         document.setMargins(30, 30, 30, 65);
         writer.setPageEvent(new InvoiceEventListener());
@@ -52,9 +56,11 @@ public class InvoiceGenerator {
         Paragraph header = new Paragraph("Lionsclub Oegstgeest/Warmond", new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD));
         header.setAlignment(Element.ALIGN_CENTER);
         document.add(header);
+        AddressDAO addressDAO = new AddressDAO();
+        Address userAddress =  addressDAO.get(guest.getAddressId());
         Paragraph address = new Paragraph(guest.getFirstName()+ " "+guest.getPrefixLastName()+ " " + guest.getLastName()+ "\n" +
-                guest.getAddress().getStreet()+ " " + guest.getAddress().getHouseNumber() + "\n" +
-                guest.getAddress().getZipCode() + " "+guest.getAddress().getCity(), defaultFont);
+                userAddress.getStreet()+ " " + userAddress.getHouseNumber() + "\n" +
+                userAddress.getZipCode() + " "+ userAddress.getCity(), defaultFont);
         address.setSpacingBefore(35);
         address.setSpacingAfter(25);
         address.setLeading(15);
@@ -132,22 +138,22 @@ public class InvoiceGenerator {
         retrievalDetails.setSpacingAfter(20);
         document.add(retrievalDetails);
 
-        document.add(new Paragraph("U kunt uw wijnen ophalen op " +  sdf.format(invoiceDate) , defaultFont));
-        document.add(new Paragraph("Adres:", defaultFont));
-
-        PdfPTable addressTable = new PdfPTable(1);
-        addressTable.setSpacingBefore(5);
-        addressTable.getDefaultCell().setBorder(Rectangle.NO_BORDER);
-        addressTable.getDefaultCell().setPaddingLeft(35);
-        MerchantService merchantService = new MerchantService();
-        Merchant merchant = merchantService.find(merchantService.all().get(0).getId());
-        addressTable.addCell(new Paragraph(merchant.getName(), defaultFont));
-        addressTable.addCell(new Paragraph(merchant.getAddress().getStreet()
-                + " " + merchant.getAddress().getHouseNumber(), defaultFont));
-        addressTable.addCell(new Paragraph(merchant.getAddress().getZipCode() + " " +
-                merchant.getAddress().getCity(), defaultFont));
-        addressTable.setHorizontalAlignment(Element.ALIGN_LEFT);
-        document.add(addressTable);
+//        document.add(new Paragraph("U kunt uw wijnen ophalen op " +  sdf.format(invoiceDate) , defaultFont));
+//        document.add(new Paragraph("Adres:", defaultFont));
+//
+//        PdfPTable addressTable = new PdfPTable(1);
+//        addressTable.setSpacingBefore(5);
+//        addressTable.getDefaultCell().setBorder(Rectangle.NO_BORDER);
+//        addressTable.getDefaultCell().setPaddingLeft(35);
+//        MerchantService merchantService = new MerchantService();
+//        Merchant merchant = merchantService.find(merchantService.all().get(0).getId());
+//        addressTable.addCell(new Paragraph(merchant.getName(), defaultFont));
+//        addressTable.addCell(new Paragraph(merchant.getAddress().getStreet()
+//                + " " + merchant.getAddress().getHouseNumber(), defaultFont));
+//        addressTable.addCell(new Paragraph(merchant.getAddress().getZipCode() + " " +
+//                merchant.getAddress().getCity(), defaultFont));
+//        addressTable.setHorizontalAlignment(Element.ALIGN_LEFT);
+//        document.add(addressTable);
 
         document.close();
         System.out.println("Succesfully generated IPSEN2.invoice: " + order.getId()+" on Date: "+ sdf.format(invoiceDate));
