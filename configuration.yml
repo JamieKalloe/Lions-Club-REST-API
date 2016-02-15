@@ -5,10 +5,15 @@ apiName: "IPSEN3-Lions-API"
 #databasePwd: "IPSEN3G1"
 #databaseName: "IPSEN3G1"
 
-databaseURL: "127.0.0.1:8889"
-databaseUser: "root"
-databasePwd: "root"
-databaseName: "mydb"
+#databaseURL: "127.0.0.1:8889"
+#databaseUser: "root"
+#databasePwd: "root"
+#databaseName: "mydb"
+
+databaseURL: "localhost:3306"
+databaseUser: "IPSEN3"
+databasePwd: "IPSEN3"
+databaseName: "IPSEN3G1"
 
 assets:
   mappings:
