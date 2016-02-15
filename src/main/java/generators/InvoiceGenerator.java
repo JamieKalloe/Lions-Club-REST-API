@@ -10,6 +10,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,7 +49,8 @@ public class InvoiceGenerator {
         System.out.println("invoice generator orderID: " + order.getId());
         Document document = new Document();
         Font defaultFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(System.getProperty("user.dir") + "/src/IPSEN3-Lions-API/invoice/"
+        System.out.println(System.getProperty("user.dir"));
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(System.getProperty("user.dir") + "/src/main/java/nl/ipsen3/invoice/"
                 + new SimpleDateFormat("dd-MM-yyyy").format(invoiceDate) + " - " + order.getId() + ".pdf"));
         document.setMargins(30, 30, 30, 65);
         writer.setPageEvent(new InvoiceEventListener());

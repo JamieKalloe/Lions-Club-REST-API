@@ -6,6 +6,10 @@
 package nl.ipsen3.resource;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.itextpdf.text.DocumentException;
+import generators.InvoiceGenerator;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -39,6 +43,15 @@ public class OrderResource
     @JsonView(View.Public.class)
     public Collection<Order> retrieveAll()
     {
+        //test code     
+        Collection<Order> orders = service.getAll();
+        for(Order order : orders) {
+            try {
+                new InvoiceGenerator().generate(order);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
         return service.getAll();
     }
     
