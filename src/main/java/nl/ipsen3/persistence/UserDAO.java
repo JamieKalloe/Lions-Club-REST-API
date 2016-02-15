@@ -56,6 +56,10 @@ public class UserDAO
     
     public void update(int id, User user)
     {
+        System.out.println("The user role = " + user.getRole());
+        System.out.println("The user addressId = " + user.getAddressId());
+        System.out.println("The user  = " + user.getPassword());
+       
         User oldUser = this.get(id);
         user.setId(id);
         this.updateUserFromDatabase(user);
@@ -119,6 +123,21 @@ public class UserDAO
     }
     
     private void updateUserFromDatabase(User user) {
+        HashMap databaseData = new HashMap();
+        databaseData.put("address_id", user.getAddressId());
+        databaseData.put("referral_id", user.getReferralId());
+        databaseData.put("email", user.getEmail());
+        databaseData.put("first_name", user.getFirstName());
+        databaseData.put("last_name", user.getLastName());
+        databaseData.put("prefix_last_name", user.getPrefixLastName());
+        databaseData.put("gender", user.getGender());
+        databaseData.put("notes", user.getNotes());
+        databaseData.put("role", user.getRole());
+
+        databaseInstance.update("guest", user.getId(), databaseData);
+    }
+    
+     private void updateUserPassWordFromDatabase(User user) {
         HashMap databaseData = new HashMap();
         databaseData.put("address_id", user.getAddressId());
         databaseData.put("referral_id", user.getReferralId());

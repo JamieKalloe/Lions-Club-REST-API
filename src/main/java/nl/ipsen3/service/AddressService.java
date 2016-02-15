@@ -32,9 +32,9 @@ public class AddressService extends BaseService<Address>
         return requireResult(dao.get(id));
     }
     
-    public void add(Address address)
+    public int add(Address address)
     {
-        dao.add(address);
+       return dao.add(address);
     }
     
     public void update(int id, Address address)

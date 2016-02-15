@@ -18,9 +18,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import nl.ipsen3.View;
 import nl.ipsen3.model.Address;
-import nl.ipsen3.model.Order;
 import nl.ipsen3.service.AddressService;
-import nl.ipsen3.service.OrderService;
 
 /**
  *
@@ -55,9 +53,9 @@ public class AddressResource
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
-    public void create(Address address)
+    public int create(Address address)
     {
-        service.add(address);
+       return service.add(address);
     }
     
     @PUT
