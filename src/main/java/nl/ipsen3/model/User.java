@@ -51,6 +51,9 @@ public class User
 
     @JsonView(View.Public.class)
     private int role;
+    
+    @JsonView(View.Public.class)
+    private Order order;
 
     public int getId() {
         return id;
@@ -78,6 +81,14 @@ public class User
 
     public String getEmail() {
         return email;
+    }
+    
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+    
+    public Order getOrder() {
+        return this.order;
     }
 
     public void setEmail(String email) {

@@ -34,6 +34,8 @@ public class Order {
     
     private Offer offer;
     
+    private ArrayList<WineOrder> wineOrders;
+    
     public Order() {
         
     }
@@ -94,7 +96,21 @@ public class Order {
 
     public void setWines(ArrayList<Wine> wines) {
         this.wines = wines;
-    }  
+    }
+    
+    public void setWineOrders(ArrayList<WineOrder> wineOrders) {
+        this.wineOrders = wineOrders;
+        double total = 0.0;
+        for (WineOrder order : wineOrders)
+        {
+            total += order.getAmount() * order.getWine().getPrice();
+        }
+        this.totalAmount = total;
+    }
+    
+    public ArrayList<WineOrder> getWineOrders() {
+        return this.wineOrders;
+    }
 
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
