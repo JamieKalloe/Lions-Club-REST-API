@@ -56,10 +56,6 @@ public class UserDAO
     
     public void update(int id, User user)
     {
-        System.out.println("The user role = " + user.getRole());
-        System.out.println("The user addressId = " + user.getAddressId());
-        System.out.println("The user  = " + user.getPassword());
-       
         User oldUser = this.get(id);
         user.setId(id);
         this.updateUserFromDatabase(user);
