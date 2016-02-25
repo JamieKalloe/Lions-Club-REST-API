@@ -30,6 +30,10 @@ public class WinesOrderDAO {
         return this.wineOrders;
     }
     
+    public List<WineOrder> getAllFor(int id) {
+        return this.getAllForOrder(id);
+    }
+    
     public WineOrder get(int id) {
         try {
             for(WineOrder wineOrder : wineOrders) {
@@ -67,6 +71,26 @@ public class WinesOrderDAO {
     private List<WineOrder> getAllFromDatabase() {
         List<WineOrder> wineOrderList = new ArrayList();
         ResultSet results = databaseInstance.select("wine_order");
+        
+        try {
+            while(results.next()) {
+                WineOrder wineOrder = new WineOrder(
+                Integer.parseInt(results.getString("order_id")),
+                Integer.parseInt(results.getString("wine_id")),
+                Integer.parseInt(results.getString("total_boxes")));
+                
+                wineOrderList.add(wineOrder);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return wineOrderList;
+    }
+    
+    private List<WineOrder> getAllForOrder(int orderId) {
+        List<WineOrder> wineOrderList = new ArrayList();
+        ResultSet results = databaseInstance.select("wine_order", "order_id = " + orderId);
         
         try {
             while(results.next()) {

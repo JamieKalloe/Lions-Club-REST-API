@@ -78,6 +78,7 @@ public class OrderDAO {
     private List<Order> getAllFromDatabase() {
         List<Order> orderList = new ArrayList();
         ResultSet results = databaseInstance.select("order");
+        WinesOrderDAO wDao = new WinesOrderDAO();
         
         try {
             while(results.next()) {
@@ -85,6 +86,9 @@ public class OrderDAO {
                 Integer.parseInt(results.getString("id")),
                 Integer.parseInt(results.getString("guest_id")),
                 Integer.parseInt(results.getString("status_id")));
+                
+                //Get all wineOrders for a specific orderId
+                order.setWineOrders(new ArrayList<WineOrder>(wDao.getAllFor(order.getId())));
                 
                 orderList.add(order);
             }
