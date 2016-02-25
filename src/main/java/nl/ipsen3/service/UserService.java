@@ -36,7 +36,7 @@ public class UserService extends BaseService<User>
     {
         // Eerst controleren of deze gebruiker wel bestaat
         User oldUser = get(id);
-        
+        System.out.println("UserService: update user" );
         dao.update(id, user);
     }
     

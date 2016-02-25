@@ -185,6 +185,7 @@ public class Database {
             }
         }
         query += " WHERE id="+id;
+        System.out.println(query);
         int result = updateDatabase(query);
         return result;
     }
@@ -214,6 +215,8 @@ public class Database {
             }
         }
         query += " WHERE " + where;
+        System.out.println(query);
+        
         int result = updateDatabase(query);
         return result;
     }

@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import nl.ipsen3.ApiConfiguration;
 import nl.ipsen3.database.Database;
 import nl.ipsen3.model.Address;
 
@@ -47,9 +46,10 @@ public class AddressDAO {
         return null;
     }
     
-    public void add(Address address) {
+    public int add(Address address) {
         address = this.addAddressToDatabase(address);
         addresses.add(address);
+        return address.getId();
     }
     
     public void update(int id, Address address) {
