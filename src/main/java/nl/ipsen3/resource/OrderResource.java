@@ -22,6 +22,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import nl.ipsen3.model.Order;
 import nl.ipsen3.View;
+import nl.ipsen3.model.WineOrder;
+import nl.ipsen3.persistence.WinesOrderDAO;
 import nl.ipsen3.service.OrderService;
 
 /**
