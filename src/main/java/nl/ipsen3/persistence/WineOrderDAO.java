@@ -27,6 +27,44 @@ public class WineOrderDAO {
         this.wineOrders = this.getAllFromDatabase();
     }
     
+    public List<WineOrder> getAll() {
+        return this.wineOrders;
+    }
+    
+    public WineOrder get(int id) {
+        try {
+            for(WineOrder wineOrder : wineOrders) {
+                if(wineOrder.getOrderID() == id) {
+                    return wineOrder;
+                }
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+        return null;
+    }
+    
+    public void add(WineOrder wineOrder) {
+        wineOrder = this.addWineOrderToDatabase(wineOrder);
+        wineOrders.add(wineOrder);
+    }
+    
+    public void update(int id, WineOrder wineOrder) {
+        WineOrder oldWineOrder = this.get(id);
+        wineOrder.setOrderID(id);
+        this.updateWineOrderFromDatabase(wineOrder);
+        int idInList = wineOrders.indexOf(oldWineOrder);
+        wineOrders.set(idInList, wineOrder);
+    }
+    
+    public void delete(int id) {
+        WineOrder wineOrder = this.get(id);
+        this.removeWineOrderFromDatabase(wineOrder);
+        wineOrders.remove(wineOrder);
+    }
+    
     private List<WineOrder> getAllFromDatabase() {
         List<WineOrder> wineOrderList = new ArrayList();
         ResultSet results = databaseInstance.select("wine_order");
