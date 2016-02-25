@@ -54,11 +54,11 @@ public class OrderDAO {
         order = this.addOrderToDatabase(order);
         orders.add(order);
         
-        //Add WineOrders
-//        WinesOrderDAO wDao = new WinesOrderDAO();
-//        for(WineOrder wineOrder : order.getWineOrders()) {
-//            wDao.add(wineOrder);
-//        }
+//        Add WineOrders
+        WinesOrderDAO wDao = new WinesOrderDAO();
+        for(WineOrder wineOrder : order.getWineOrders()) {
+            wDao.add(wineOrder);
+        }
     }
     
     public void update(int id, Order order) {
