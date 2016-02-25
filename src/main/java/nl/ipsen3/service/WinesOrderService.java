@@ -7,7 +7,7 @@ package nl.ipsen3.service;
 
 import java.util.Collection;
 import nl.ipsen3.model.WineOrder;
-import nl.ipsen3.persistence.WineOrderDAO;
+import nl.ipsen3.persistence.WinesOrderDAO;
 
 /**
  *
@@ -15,9 +15,9 @@ import nl.ipsen3.persistence.WineOrderDAO;
  */
 public class WinesOrderService extends BaseService<WineOrder> {
     
-    private final WineOrderDAO dao;
+    private final WinesOrderDAO dao;
     
-    public WinesOrderService(WineOrderDAO dao) {
+    public WinesOrderService(WinesOrderDAO dao) {
         this.dao = dao;
     }
     
