@@ -1,16 +1,19 @@
 package nl.ipsen3.service;
 
 import java.util.Collection;
+import java.util.Optional;
+import nl.ipsen3.model.Address;
 import nl.ipsen3.model.User;
 import nl.ipsen3.persistence.UserDAO;
 
 /**
  *
- * @author 
+ * @author Philip Wong
  */
 public class UserService extends BaseService<User>
 {
     private final UserDAO dao;
+    private AddressService addressService;
     
     public UserService(UserDAO dao)
     {
@@ -27,24 +30,35 @@ public class UserService extends BaseService<User>
         return requireResult(dao.get(id));
     }
     
-    public void add(User user)
+    public int add(User user)
     {
         dao.add(user);
+        return 1;
     }
     
     public void update(int id, User user)
     {
-        // Eerst controleren of deze gebruiker wel bestaat
-        User oldUser = get(id);
-        System.out.println("UserService: update user" );
         dao.update(id, user);
     }
     
     public void delete(int id)
     {
-        // Eerst controleren of deze gebruiker wel bestaat
+       // Controleren of deze gebruiker wel bestaat
         User user = get(id);
         
         dao.delete(id);
     }
+    
+    public int checkIfEmailExists(String emailAddress)
+    {
+        Collection<User> users = getAll();
+        Optional<User> result = users.stream()
+            .filter(user -> user.getEmail().equals(emailAddress))
+            .findAny();
+
+        return result.isPresent()
+            ? 1
+            : 0;
+    }
+
 }

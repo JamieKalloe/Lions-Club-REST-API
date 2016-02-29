@@ -1,6 +1,8 @@
 package nl.ipsen3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import java.security.Principal;
 import nl.ipsen3.View;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -11,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
  * 
  * @author Groep1
  */
-public class User
+public class User implements Principal
 {
     @JsonView(View.Public.class)
     private int id;
@@ -26,17 +28,20 @@ public class User
     @JsonView(View.Public.class)
     private String email;
     
+    @JsonView(View.Public.class)
+    private int mailOpt;
+    
     @Length(min = 3, max = 100)
     @JsonView(View.Public.class)
-    private String first_name;
+    private String firstName;
     
     @Length(min = 0, max = 100)
     @JsonView(View.Public.class)
-    private String prefix_last_name;
+    private String prefixLastName;
     
     @Length(min = 3, max = 100)
     @JsonView(View.Public.class)
-    private String last_name;
+    private String lastName;
     
     @Length(max = 1)
     @JsonView(View.Public.class)
@@ -46,11 +51,11 @@ public class User
     private String notes;
     
     @Length(min = 8)
-    @JsonView(View.Private.class)
+    @JsonView(View.Protected.class)
     private String password;
 
     @JsonView(View.Public.class)
-    private int role;
+    private String role;
 
     public int getId() {
         return id;
@@ -83,29 +88,39 @@ public class User
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getFirstName() {
-        return first_name;
+    
+    public int getMailOpt() {
+        return mailOpt;
     }
 
+    public void setMailOpt(int mailOpt) {
+        this.mailOpt = mailOpt;
+    }
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+   
     public void setFirstName(String firstName) {
-        this.first_name = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.last_name = lastName;
+        this.lastName = lastName;
     }
 
     public String getPrefixLastName() {
-        return prefix_last_name;
+        return prefixLastName;
     }
 
     public void setPrefixLastName(String prefixLastName) {
-        this.prefix_last_name = prefixLastName;
+        this.prefixLastName = prefixLastName;
     }
 
     public String getGender() {
@@ -132,12 +147,30 @@ public class User
         this.password = password;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean hasRole(String roleName)
+    {
+        return roleName.equals(role);
+    }
+    
+    
+    @Override
+    @JsonIgnore
+    public String getName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    public boolean equals(User user)
+    {
+        return email.equals(user.getEmail());
     }
     
     

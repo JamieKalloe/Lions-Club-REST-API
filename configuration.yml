@@ -1,14 +1,14 @@
 apiName: "IPSEN3-Lions-API"
 
-databaseURL: "145.97.16.190:3306"
-databaseUser: "IPSEN3G1"
-databasePwd: "IPSEN3G1"
-databaseName: "IPSEN3G1"
+#databaseURL: "145.97.16.190:3306"
+#databaseUser: "IPSEN3G1"
+#databasePwd: "IPSEN3G1"
+#databaseName: "IPSEN3G1"
 
-#databaseURL: "127.0.0.1:8889"
-#databaseUser: "root"
-#databasePwd: "root"
-#databaseName: "mydb"
+databaseURL: "127.0.0.1:8889"
+databaseUser: "root"
+databasePwd: "root"
+databaseName: "mydb"
 #
 #databaseURL: "localhost:3306"
 #databaseUser: "IPSEN3"
@@ -17,7 +17,7 @@ databaseName: "IPSEN3G1"
 
 assets:
   mappings:
-      /includes: /
+      /assets: /
   overrides:
     /: ../Lions-Client/public_html/
 
@@ -25,4 +25,4 @@ assets:
       
 server:
   rootPath: /api/*
-  adminContextPath: /admin
+  adminContextPath: /

@@ -54,7 +54,8 @@ public class ClientFilter implements Filter
     private boolean shouldRedirect(String uri)
     {
         return !uri.equals("")
-            && !uri.equals("/")
+            && !uri.equals("/#")
+            && !uri.equals("/")   
             && !uri.startsWith("/api")
             && !isAllowedExtension(uri);
     }

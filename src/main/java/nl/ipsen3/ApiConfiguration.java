@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
- * @author 
+ * @author Philip Wong
  */
 public class ApiConfiguration extends Configuration implements AssetsBundleConfiguration
 {
@@ -87,5 +87,4 @@ public class ApiConfiguration extends Configuration implements AssetsBundleConfi
     public void setDatabaseName(String databaseName) {
         this.databaseName = databaseName;
     }
-    
 }

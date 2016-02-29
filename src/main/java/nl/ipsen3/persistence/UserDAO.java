@@ -10,7 +10,9 @@ import java.util.HashMap;
 //Imports for SQL results
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import nl.ipsen3.ApiConfiguration;
+import java.util.Collection;
+import java.util.Optional;
+
 /**
  *
  * @author 
@@ -86,11 +88,12 @@ public class UserDAO
                 user.setEmail(results.getString("email"));
                 user.setFirstName(results.getString("first_name"));
                 user.setLastName(results.getString("last_name"));
+                user.setMailOpt(results.getInt("mail_opt"));
                 user.setPrefixLastName(results.getString("prefix_last_name"));
                 user.setGender(results.getString("gender"));
                 user.setNotes(results.getString("notes"));
                 user.setPassword(results.getString("password"));
-                user.setRole(results.getInt("role"));
+                user.setRole(results.getString("role"));
                 
                 users.add(user);
             }
@@ -105,6 +108,7 @@ public class UserDAO
         databaseData.put("address_id", user.getAddressId());
         databaseData.put("referral_id", user.getReferralId());
         databaseData.put("email", user.getEmail());
+        databaseData.put("mail_opt", user.getMailOpt());
         databaseData.put("first_name", user.getFirstName());
         databaseData.put("last_name", user.getLastName());
         databaseData.put("prefix_last_name", user.getPrefixLastName());
@@ -123,6 +127,7 @@ public class UserDAO
         databaseData.put("address_id", user.getAddressId());
         databaseData.put("referral_id", user.getReferralId());
         databaseData.put("email", user.getEmail());
+        databaseData.put("mail_opt", user.getMailOpt());
         databaseData.put("first_name", user.getFirstName());
         databaseData.put("last_name", user.getLastName());
         databaseData.put("prefix_last_name", user.getPrefixLastName());
@@ -138,6 +143,7 @@ public class UserDAO
         databaseData.put("address_id", user.getAddressId());
         databaseData.put("referral_id", user.getReferralId());
         databaseData.put("email", user.getEmail());
+        databaseData.put("mail_opt", user.getMailOpt());
         databaseData.put("first_name", user.getFirstName());
         databaseData.put("last_name", user.getLastName());
         databaseData.put("prefix_last_name", user.getPrefixLastName());
@@ -152,4 +158,17 @@ public class UserDAO
     private void removeUserFromDatabase(User user) {
         databaseInstance.delete("guest", user.getId());
     }
+    
+    
+   public User getByEmailAddress(String emailAddress)
+    {
+        Optional<User> result = users.stream()
+            .filter(user -> user.getEmail().equals(emailAddress))
+            .findAny();
+        
+        return result.isPresent()
+            ? result.get()
+            : null;
+    }
+    
 }

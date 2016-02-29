@@ -16,6 +16,7 @@ import nl.IPSEN3.model.MailType;
 import nl.IPSEN3.persistence.MailFactory;
 import nl.IPSEN3.service.MailService;
 import nl.ipsen3.View;
+import nl.ipsen3.model.Address;
 import nl.ipsen3.model.User;
 import nl.ipsen3.service.UserService;
 
@@ -48,6 +49,14 @@ public class UserResource
     public User retrieve(@PathParam("id") int id)
     {
         return service.get(id);
+    }
+    
+    @GET
+    @Path("/email/{email}")
+    @JsonView(View.Public.class)
+    public int get(@PathParam("email") String email)
+    {
+        return service.checkIfEmailExists(email);
     }
     
     @POST
