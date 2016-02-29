@@ -40,6 +40,11 @@ public class Wine {
         this.price = 0;
     }
     
+    public boolean checkIfOnlyID() {
+        return this.type == null && this.name == null && this.country == null && this.region == null && this.year == 0 && this.purchasePrice == 0 && this.price == 0 && this.merchant == null && this.typeName == null;
+    }
+
+    
     public int getId() {
         return this.id;
     }

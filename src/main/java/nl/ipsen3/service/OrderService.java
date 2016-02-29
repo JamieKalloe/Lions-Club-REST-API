@@ -5,7 +5,10 @@
  */
 package nl.ipsen3.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import nl.ipsen3.model.Order;
 import nl.ipsen3.persistence.OrderDAO;
 
@@ -16,13 +19,15 @@ import nl.ipsen3.persistence.OrderDAO;
 public class OrderService extends BaseService<Order>{
     
     private final OrderDAO dao;
-    
+   
     public OrderService(OrderDAO dao) {
-        this.dao = dao;
+          this.dao = dao;
+        
+        
     }
     
-    public Collection<Order> getAll() {
-        return dao.getAll();
+    public Collection <Order> getAll() {
+       return dao.getAll();
     }
     
     public Order get(int id) {
@@ -31,6 +36,10 @@ public class OrderService extends BaseService<Order>{
     
     public void add(Order order) {
         dao.add(order);
+        
+        
+        //TODO: aanmaken order in document
+      
     }
     
     public void update(int id, Order order) {

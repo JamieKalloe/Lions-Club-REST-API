@@ -10,10 +10,15 @@ apiName: "IPSEN3-Lions-API"
 #databasePwd: "root"
 #databaseName: "mydb"
 
+#databaseURL: "localhost:3306"
+#databaseUser: "IPSEN3"
+#databasePwd: "IPSEN3"
+#databaseName: "IPSEN3G1"
+
 databaseURL: "localhost:3306"
-databaseUser: "IPSEN3"
-databasePwd: "IPSEN3"
-databaseName: "IPSEN3G1"
+databaseUser: "root"
+databasePwd: "root"
+databaseName: "lions_club"
 
 assets:
   mappings:

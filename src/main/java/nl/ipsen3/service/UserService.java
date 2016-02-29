@@ -16,6 +16,10 @@ public class UserService extends BaseService<User>
     {
         this.dao = dao;
     }
+
+    UserService() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public Collection<User> getAll()
     {

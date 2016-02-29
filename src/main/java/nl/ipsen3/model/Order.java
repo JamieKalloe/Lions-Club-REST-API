@@ -24,7 +24,7 @@ public class Order {
     private OrderStatus orderStatus;
     
     @JsonView(View.Public.class)
-    private ArrayList<Wine> wines;
+    private ArrayList<WineOrder> wineOrders;
     
     @JsonView(View.Public.class)
     private double totalAmount;
@@ -38,12 +38,13 @@ public class Order {
         
     }
     
-    public Order(int id, int userId, int orderStatusId) {
+    public Order(int id, int userId, int offerId, int orderStatusId) {
         this.id = id;
         this.userId = userId;
+        this.offerId = offerId;
         this.orderStatus = new OrderStatus(orderStatusId);
         this.totalAmount = 0;
-        this.wines = null;
+        this.wineOrders = null;
         this.date = new Date();
         
     }
@@ -68,8 +69,8 @@ public class Order {
         return orderStatus;
     }
 
-    public ArrayList<Wine> getWines() {
-        return wines;
+    public ArrayList<WineOrder> getWineOrders() {
+        return wineOrders;
     }
     
     public int getOfferId() {
@@ -92,8 +93,13 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public void setWines(ArrayList<Wine> wines) {
-        this.wines = wines;
+    public void setWineOrders(ArrayList<WineOrder> wineOrders) {
+        this.wineOrders = wineOrders;
+        double total = 0.0;
+        for (WineOrder order : wineOrders) {
+            total += order.getAmount() * order.getWine().getPrice();
+        }
+        this.totalAmount = total;
     }  
 
     public void setTotalAmount(double totalAmount) {
@@ -108,7 +114,9 @@ public class Order {
         this.offerId = offerId;
     }
      
-      public void setOfferId(Offer offerId) {
+      public void setOffer(Offer offer) {
         this.offer = offer;
     }
+
+    
 }

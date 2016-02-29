@@ -5,24 +5,23 @@
  */
 package nl.ipsen3.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import nl.ipsen3.model.Wine;
 import javafx.beans.property.SimpleStringProperty;
+import nl.ipsen3.View;
 
 /**
- * The Order status.
- * Date of creation: 15-10-15.
- *
- * @author Mike Bazuin
+ * 
  */
 public class WineOrder {
 
-    private int orderID;
+    @JsonView(View.Public.class)
+    private int orderID, amount;
 
     private Wine wine;
-
     private SimpleStringProperty name = new SimpleStringProperty("");
 
-    private int amount;
+   
 
     /**
      * Instantiates a new Wine order.
@@ -47,6 +46,10 @@ public class WineOrder {
     {
         this.wine = new Wine(wineID);
         this.amount = amount;
+    }
+
+    public WineOrder() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
