@@ -2,7 +2,6 @@
 package nl.ipsen3.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import java.util.Date;
 import nl.ipsen3.View;
 
 /**

@@ -18,18 +18,15 @@ import nl.ipsen3.View;
 public class Order {
         
     @JsonView(View.Public.class)
-    private int id, userId, offerId;
+    private int id, userId, offerId, orderStatus;
     
-    @JsonView(View.Public.class)
-    private OrderStatus orderStatus;
-    
-    @JsonView(View.Public.class)
+
     private ArrayList<Wine> wines;
     
-    @JsonView(View.Public.class)
-    private double totalAmount;
+//    @JsonView(View.Public.class)
+//    private double totalAmount;
     
-    @JsonView(View.Public.class)
+
     private Date date;
     
     private Offer offer;
@@ -41,17 +38,12 @@ public class Order {
     public Order(int id, int userId, int orderStatusId) {
         this.id = id;
         this.userId = userId;
-        this.orderStatus = new OrderStatus(orderStatusId);
-        this.totalAmount = 0;
+        this.orderStatus = orderStatusId;
         this.wines = null;
         this.date = new Date();
         
     }
-
-    public double getTotalAmount() {
-        return totalAmount;
-    }
-
+    
     public Date getDate() {
         return date;
     }
@@ -64,7 +56,7 @@ public class Order {
         return userId;
     }
 
-    public OrderStatus getOrderStatus() {
+    public int getOrderStatus() {
         return orderStatus;
     }
 
@@ -88,17 +80,13 @@ public class Order {
         this.userId = userId;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
+    public void setOrderStatus(int orderStatus) {
         this.orderStatus = orderStatus;
     }
 
     public void setWines(ArrayList<Wine> wines) {
         this.wines = wines;
     }  
-
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
-    }
 
     public void setDate(Date date) {
         this.date = date;

@@ -5,8 +5,8 @@
  */
 package nl.ipsen3.model;
 
-import nl.ipsen3.model.Wine;
-import javafx.beans.property.SimpleStringProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.ipsen3.View;
 
 /**
  * The Order status.
@@ -16,36 +16,38 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class WineOrder {
 
-    private int orderID;
+    @JsonView(View.Public.class)
+    private int orderId;
 
-    private Wine wine;
+    @JsonView(View.Public.class)
+    private int wineId;
 
-    private SimpleStringProperty name = new SimpleStringProperty("");
-
+    @JsonView(View.Public.class)
     private int amount;
 
     /**
      * Instantiates a new Wine order.
      *
-     * @param wineID the wine id
+     * @param wineId the wine id
      * @param amount the amount
      */
-    public WineOrder(int wineID, int amount)
+    public WineOrder(int wineId, int amount)
     {
-        this.wine = new Wine(wineID);
+        this.wineId = wineId;
         this.amount = amount;
     }
 
     /**
      * Instantiates a new Wine order.
      *
-     * @param orderID the order id
-     * @param wineID  the wine id
+     * @param orderId the order id
+     * @param wineId  the wine id
      * @param amount  the amount
      */
-    public WineOrder(int orderID, int wineID, int amount)
+    public WineOrder(int orderId, int wineId, int amount)
     {
-        this.wine = new Wine(wineID);
+        this.orderId = orderId;
+        this.wineId = wineId;
         this.amount = amount;
     }
 
@@ -56,7 +58,7 @@ public class WineOrder {
      */
     public int getOrderID()
     {
-        return orderID;
+        return orderId;
     }
 
     /**
@@ -64,9 +66,9 @@ public class WineOrder {
      *
      * @return the wine
      */
-    public Wine getWine()
+    public int getWineId()
     {
-        return wine;
+        return wineId;
     }
 
     /**
@@ -80,33 +82,23 @@ public class WineOrder {
     }
 
     /**
-     * Gets name.
-     *
-     * @return the name
-     */
-    public String getName()
-    {
-        return wine.getName();
-    }
-
-    /**
      * Sets order id.
      *
      * @param orderID the order id
      */
     public void setOrderID(int orderID)
     {
-        this.orderID = orderID;
+        this.orderId = orderID;
     }
 
     /**
      * Sets wine.
      *
-     * @param wine the wine
+     * @param wineId the wine
      */
-    public void setWine(Wine wine)
+    public void setWineId(int wineId)
     {
-        this.wine = wine;
+        this.wineId = wineId;
     }
 
     /**

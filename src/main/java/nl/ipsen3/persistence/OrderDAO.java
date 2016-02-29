@@ -93,7 +93,7 @@ public class OrderDAO {
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         databaseData.put("guest_id", order.getUserId());
-        databaseData.put("status_id", order.getOrderStatus().getId());
+        databaseData.put("status_id", order.getOrderStatus());
         databaseData.put("order_date", sdf.format(new Date()));
         databaseData.put("offer_id", order.getOfferId());
         
@@ -107,7 +107,7 @@ public class OrderDAO {
         HashMap databaseData = new HashMap();
         
         databaseData.put("guest_id", order.getUserId());
-        databaseData.put("status_id", order.getOrderStatus().getId());
+        databaseData.put("status_id", order.getOrderStatus());
         
         databaseInstance.update("order", order.getId(), databaseData);
     }
