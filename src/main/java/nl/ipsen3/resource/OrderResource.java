@@ -45,15 +45,6 @@ public class OrderResource
     @JsonView(View.Public.class)
     public Collection<Order> retrieveAll()
     {
-        //test code
-        Collection<Order> orders = service.getAll();
-        for(Order order : orders) {
-            try {
-                new InvoiceGenerator().generate(order);
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-        }
         return service.getAll();
     }
     
