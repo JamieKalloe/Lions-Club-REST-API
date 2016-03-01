@@ -8,6 +8,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import nl.ipsen3.database.Database;
 import nl.ipsen3.persistence.AddressDAO;
+import nl.ipsen3.persistence.EventDAO;
 import nl.ipsen3.persistence.MerchantDAO;
 import nl.ipsen3.persistence.OrderDAO;
 import nl.ipsen3.persistence.OfferDAO;
@@ -16,6 +17,7 @@ import nl.ipsen3.persistence.UserDAO;
 import nl.ipsen3.persistence.WineDAO;
 import nl.ipsen3.persistence.WinesOrderDAO;
 import nl.ipsen3.resource.AddressResource;
+import nl.ipsen3.resource.EventResource;
 import nl.ipsen3.resource.MerchantResource;
 import nl.ipsen3.resource.OrderResource;
 import nl.ipsen3.resource.OfferResource;
@@ -24,6 +26,7 @@ import nl.ipsen3.resource.UserResource;
 import nl.ipsen3.resource.WineResource;
 import nl.ipsen3.resource.WinesOrderResource;
 import nl.ipsen3.service.AddressService;
+import nl.ipsen3.service.EventService;
 import nl.ipsen3.service.MerchantService;
 import nl.ipsen3.service.OfferService;
 import nl.ipsen3.service.OfferWineService;
@@ -73,6 +76,7 @@ public class ApiApplication extends Application<ApiConfiguration>
         AddressDAO addressDAO = new AddressDAO();
         OfferDAO offerDAO = new OfferDAO();
         WinesOrderDAO winesOrderDAO = new WinesOrderDAO();
+        EventDAO eventDAO = new EventDAO();
         
         UserService userService = new UserService(userDAO);
         WineService wineService = new WineService(wineDAO);
@@ -82,6 +86,7 @@ public class ApiApplication extends Application<ApiConfiguration>
         OfferService offerService = new OfferService(offerDAO);
         OfferWineService offerWineService = new OfferWineService(offerWineDAO);
         WinesOrderService winesOrderService = new WinesOrderService(winesOrderDAO);
+        EventService eventService = new EventService(eventDAO);
         
         UserResource userResource = new UserResource(userService);
         WineResource wineResource = new WineResource(wineService);
@@ -91,6 +96,7 @@ public class ApiApplication extends Application<ApiConfiguration>
         OfferResource offerResource = new OfferResource(offerService);
         OfferWineResource offerWineResource = new OfferWineResource(offerWineService);
         WinesOrderResource winesOrderResoure = new WinesOrderResource(winesOrderService);
+        EventResource eventResource = new EventResource(eventService); 
         
         environment.jersey().register(userResource);
         environment.jersey().register(wineResource);
@@ -100,6 +106,7 @@ public class ApiApplication extends Application<ApiConfiguration>
         environment.jersey().register(offerResource);
         environment.jersey().register(offerWineResource);
         environment.jersey().register(winesOrderResoure);
+        environment.jersey().register(eventResource);
     }
     
     public static void main(String[] args) throws Exception
