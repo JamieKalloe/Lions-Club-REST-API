@@ -75,10 +75,12 @@ public class EventDAO {
                 Event event = new Event(
                         results.getInt("id"), 
                         results.getString("name"), 
-                        dao.get(results.getInt("address+id")), 
+                        dao.get(results.getInt("address_id")), 
                         results.getDate("start_date"), 
                         results.getDate("end_date")
                 );
+                
+                eventList.add(event);
             }
         } catch(SQLException e) {
             e.printStackTrace();
@@ -117,4 +119,6 @@ public class EventDAO {
     private void removeEventFromDatabase(Event event) {
         databaseInstance.delete("event", event.getId());
     }
+    
+    
 }

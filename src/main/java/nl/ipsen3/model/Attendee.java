@@ -11,7 +11,7 @@ package nl.ipsen3.model;
  */
 public class Attendee {
     
-    private int guestId;
+    private int userId;
     private int eventId;
     private boolean attended;
     
@@ -23,12 +23,12 @@ public class Attendee {
         this.eventId = eventId;
     }
 
-    public int getGuestId() {
-        return guestId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setGuestId(int guestId) {
-        this.guestId = guestId;
+    public void setUserId(int guestId) {
+        this.userId = guestId;
     }
 
     public int getEventId() {
