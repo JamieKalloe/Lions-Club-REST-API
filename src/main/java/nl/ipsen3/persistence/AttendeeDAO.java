@@ -59,7 +59,7 @@ public class AttendeeDAO {
         attendees.set(idInList, attendee);
     }
     
-    private void delete(int userId) {
+    public void delete(int userId) {
         Attendee attendee = this.get(userId);
         this.removeAttendeeFromDatabase(userId);
         attendees.remove(attendee);
