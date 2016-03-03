@@ -34,12 +34,9 @@ import nl.ipsen3.resource.UserResource;
 import nl.ipsen3.resource.WineResource;
 import nl.ipsen3.resource.WinesOrderResource;
 import nl.ipsen3.service.AddressService;
-<<<<<<< HEAD
 import nl.ipsen3.service.AuthenticationService;
-=======
 import nl.ipsen3.service.AttendeeService;
 import nl.ipsen3.service.EventService;
->>>>>>> ca59dbf78f94ed90785751164c1a6b8f381a7ccc
 import nl.ipsen3.service.MerchantService;
 import nl.ipsen3.service.OfferService;
 import nl.ipsen3.service.OfferWineService;
@@ -102,14 +99,11 @@ public class ApiApplication extends Application<ApiConfiguration>
         AddressService addressService = new AddressService(addressDAO);
         OfferService offerService = new OfferService(offerDAO);
         OfferWineService offerWineService = new OfferWineService(offerWineDAO);
-<<<<<<< HEAD
         WinesOrderService winesOrderService = new WinesOrderService(winesOrderDAO, wineDAO);
-=======
-        WinesOrderService winesOrderService = new WinesOrderService(winesOrderDAO);
         EventService eventService = new EventService(eventDAO);
         AttendeeService attendeeService = new AttendeeService(attendeeDAO);
 
->>>>>>> ca59dbf78f94ed90785751164c1a6b8f381a7ccc
+        
         
         UserResource userResource = new UserResource(userService);
         WineResource wineResource = new WineResource(wineService);

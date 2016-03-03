@@ -4,14 +4,12 @@ apiName: "IPSEN3-Lions-API"
 #databaseUser: "IPSEN3G1"
 #databasePwd: "IPSEN3G1"
 #databaseName: "IPSEN3G1"
-<<<<<<< HEAD
 
 databaseURL: "127.0.0.1:8889"
 databaseUser: "root"
 databasePwd: "root"
 databaseName: "mydb"
-=======
->>>>>>> ca59dbf78f94ed90785751164c1a6b8f381a7ccc
+
 
 #
 databaseURL: "localhost:3306"
