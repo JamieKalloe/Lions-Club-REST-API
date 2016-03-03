@@ -16,7 +16,7 @@ import nl.ipsen3.View;
 public class Offer {
     
     @JsonView(View.Public.class)
-    private int id;
+    private int id, isStarted;
     
     @JsonView(View.Public.class)
     private String name;
@@ -57,6 +57,12 @@ public class Offer {
        
         return endDate;
     }
+    
+    public int isStarted(){
+       
+        return isStarted;
+    }
+
 
     public void setId(int id) {
         this.id = id;
@@ -68,9 +74,15 @@ public class Offer {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    
     }
 
     public void setEndDate(Date endDate) {
-       this.endDate = endDate;
+        this.endDate = endDate;
     }
+    
+     public void setStarted(int isStarted) {
+        this.isStarted = isStarted;
+    }
+    
 }

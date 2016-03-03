@@ -19,12 +19,16 @@ public class WineOrder {
     @JsonView(View.Public.class)
     private int orderId;
 
+    private Wine wine;
+    
     @JsonView(View.Public.class)
     private int wineId;
-
+    
     @JsonView(View.Public.class)
     private int amount;
 
+    
+    public WineOrder(){}
     /**
      * Instantiates a new Wine order.
      *
@@ -33,21 +37,20 @@ public class WineOrder {
      */
     public WineOrder(int wineId, int amount)
     {
-        this.wineId = wineId;
+        this.wine = new Wine(wineId);
         this.amount = amount;
     }
 
     /**
      * Instantiates a new Wine order.
      *
-     * @param orderId the order id
-     * @param wineId  the wine id
+     * @param orderID the order id
+     * @param wineID  the wine id
      * @param amount  the amount
      */
-    public WineOrder(int orderId, int wineId, int amount)
+    public WineOrder(int orderID, int wineID, int amount)
     {
-        this.orderId = orderId;
-        this.wineId = wineId;
+        this.wine = new Wine(wineID);
         this.amount = amount;
     }
 
@@ -56,19 +59,29 @@ public class WineOrder {
      *
      * @return the order id
      */
-    public int getOrderID()
+    public int getOrderId()
     {
         return orderId;
     }
-
-    /**
-     * Gets wine.
+    
+      /**
+     * Gets order id.
      *
-     * @return the wine
+     * @return the order id
      */
     public int getWineId()
     {
         return wineId;
+    }
+
+    /**
+     * Gets wineId.
+     *
+     * @return the wineId
+     */
+    public Wine getWine()
+    {
+        return wine;
     }
 
     /**
@@ -82,23 +95,44 @@ public class WineOrder {
     }
 
     /**
-     * Sets order id.
+     * Gets name.
      *
-     * @param orderID the order id
+     * @return the name
      */
-    public void setOrderID(int orderID)
+    public String getName()
     {
-        this.orderId = orderID;
+        return wine.getName();
     }
 
     /**
-     * Sets wine.
+     * Sets order id.
      *
-     * @param wineId the wine
+     * @param orderId the order id
+     */
+    public void setOrderID(int orderId)
+    {
+        this.orderId = orderId;
+    }
+    
+     /**
+     * Sets wineId.
+     *
+     * @param wineId the wineId
      */
     public void setWineId(int wineId)
     {
         this.wineId = wineId;
+    }
+
+
+    /**
+     * Sets wine.
+     *
+     * @param wine the wine
+     */
+    public void setWine(Wine wine)
+    {
+        this.wine = wine;
     }
 
     /**

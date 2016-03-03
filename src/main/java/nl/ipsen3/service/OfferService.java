@@ -6,6 +6,7 @@
 package nl.ipsen3.service;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import nl.ipsen3.persistence.OfferDAO;
 import nl.ipsen3.model.Offer;
@@ -35,14 +36,35 @@ public class OfferService extends BaseService<Offer>{
     }
     
     public void update(int id, Offer offer){
-        Offer oldOffer = get(id);
+        if(offer.isStarted() == 1){
+          if(checkToBeStarted()) {
+              dao.update(id, offer); 
+            }
+        }else {
+            dao.update(id, offer);
+        }
         
-        dao.update(id, offer);
     }
     
     public void delete(int id) {
         Offer offer = get(id);
         
         dao.delete(id);
+    }
+    /*
+    Checks if the current offer can be started
+    */
+    public boolean checkToBeStarted() {
+        Collection<Offer> offers = getAll();
+        boolean start = true;
+        
+        for(Offer offer : offers) {
+            if(offer.isStarted() == 1) {
+                start = false;
+                offer.setStarted(0);
+            }
+        }
+        
+        return start;
     }
 }

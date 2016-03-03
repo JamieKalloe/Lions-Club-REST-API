@@ -76,6 +76,14 @@ public class UserResource
         service.update(id, user);
     }
     
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @JsonView(View.Private.class)
+    public void update(User user)
+    {
+        service.updateRole(user);
+    }
+    
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") int id)

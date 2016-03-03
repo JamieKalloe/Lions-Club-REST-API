@@ -9,6 +9,7 @@ databaseURL: "127.0.0.1:8889"
 databaseUser: "root"
 databasePwd: "root"
 databaseName: "mydb"
+
 #
 #databaseURL: "localhost:3306"
 #databaseUser: "IPSEN3"

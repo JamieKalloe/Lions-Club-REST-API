@@ -32,7 +32,7 @@ public class OfferDAO {
     }
     
     public List<Offer> getAll() {
-          return this.offers;
+          return getAllFromDatabase();
     }
     
     public Offer get(int id) {
@@ -58,10 +58,9 @@ public class OfferDAO {
     public void update(int id, Offer offer){
         Offer oldOffer = get(id);
         oldOffer.setId(id);
-        
+        offer.setId(id);
         this.updateOfferFromDatabase(offer);
-        int idInList = offers.indexOf(offer);
-        offers.set(idInList, oldOffer);
+        
     }
     
     public void delete(int id) {
@@ -81,6 +80,7 @@ public class OfferDAO {
                 offer.setName(results.getString("name"));
                 offer.setStartDate(results.getDate("start_date"));
                 offer.setEndDate(results.getDate("end_date"));
+                offer.setStarted(results.getInt("isStarted"));
                 
                 offerList.add(offer);  
             }
@@ -98,7 +98,8 @@ public class OfferDAO {
         databaseData.put("name", offer.getName());
         databaseData.put("start_date", sdf.format(offer.getStartDate()));
         databaseData.put("end_date", sdf.format(offer.getEndDate()));
-                
+        databaseData.put("isStarted", offer.isStarted());
+        
         int id = databaseInstance.insertInto("offer", databaseData);
         offer.setId(id);
         
@@ -111,11 +112,11 @@ public class OfferDAO {
     
     private void updateOfferFromDatabase(Offer offer){
         HashMap databaseData = new HashMap();
-        
-        databaseData.put("id", offer.getId());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         databaseData.put("name", offer.getName());
-        databaseData.put("start_date", offer.getStartDate());
-        databaseData.put("end_date", offer.getEndDate());
+        databaseData.put("start_date", sdf.format(offer.getStartDate()));
+        databaseData.put("end_date", sdf.format(offer.getEndDate()));
+        databaseData.put("isStarted", offer.isStarted());
           
         databaseInstance.update("offer", offer.getId(), databaseData);
     }

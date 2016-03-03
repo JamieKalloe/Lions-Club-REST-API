@@ -57,6 +57,8 @@ public class User implements Principal
     @JsonView(View.Public.class)
     private String role;
 
+    private Order order;
+
     public int getId() {
         return id;
     }
@@ -83,6 +85,14 @@ public class User implements Principal
 
     public String getEmail() {
         return email;
+    }
+    
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+    
+    public Order getOrder() {
+        return this.order;
     }
 
     public void setEmail(String email) {

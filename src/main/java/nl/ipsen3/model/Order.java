@@ -5,7 +5,6 @@
  */
 package nl.ipsen3.model;
 
-import nl.ipsen3.model.User;
 import com.fasterxml.jackson.annotation.JsonView;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,18 +17,23 @@ import nl.ipsen3.View;
 public class Order {
         
     @JsonView(View.Public.class)
-    private int id, userId, offerId, orderStatus;
+    private int id, userId, offerId;
+    
+    @JsonView(View.Public.class)
+    private int orderStatus;
     
 
     private ArrayList<Wine> wines;
     
-//    @JsonView(View.Public.class)
-//    private double totalAmount;
     
-
+    private double totalAmount;
+    
+    @JsonView(View.Public.class)
     private Date date;
     
     private Offer offer;
+    
+    private ArrayList<WineOrder> wineOrders;
     
     public Order() {
         
@@ -39,11 +43,16 @@ public class Order {
         this.id = id;
         this.userId = userId;
         this.orderStatus = orderStatusId;
+        this.totalAmount = 0;
         this.wines = null;
         this.date = new Date();
         
     }
-    
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -86,7 +95,25 @@ public class Order {
 
     public void setWines(ArrayList<Wine> wines) {
         this.wines = wines;
-    }  
+    }
+    
+    public void setWineOrders(ArrayList<WineOrder> wineOrders) {
+        this.wineOrders = wineOrders;
+        double total = 0.0;
+        for (WineOrder order : wineOrders)
+        {
+            total += order.getAmount() * order.getWine().getPrice();
+        }
+        this.totalAmount = total;
+    }
+    
+    public ArrayList<WineOrder> getWineOrders() {
+        return this.wineOrders;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
     public void setDate(Date date) {
         this.date = date;
@@ -94,9 +121,5 @@ public class Order {
     
      public void setOfferId(int offerId) {
         this.offerId = offerId;
-    }
-     
-      public void setOfferId(Offer offerId) {
-        this.offer = offer;
     }
 }

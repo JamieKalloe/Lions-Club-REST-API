@@ -18,7 +18,7 @@ import java.util.Optional;
  */
 public class UserDAO
 {
-    private final List<User> users;
+    private List<User> users;
     private final Database databaseInstance;
     
     public UserDAO()
@@ -29,11 +29,13 @@ public class UserDAO
     
     public List<User> getAll()
     {
-        return users;
+ 
+        return this.getAllFromDatabase();
     }
     
     public User get(int id)
     {
+        users = getAll();
         try
         {
             for(User user : users) {
@@ -137,6 +139,13 @@ public class UserDAO
         databaseInstance.update("guest", user.getId(), databaseData);
     }
     
+     public void updateRole(User user) {
+        HashMap databaseData = new HashMap();
+        databaseData.put("role", user.getRole());
+            
+        databaseInstance.update("guest","id="+user.getId(), databaseData);
+    }
+
      private void updateUserPassWordFromDatabase(User user) {
         HashMap databaseData = new HashMap();
         databaseData.put("address_id", user.getAddressId());

@@ -289,4 +289,8 @@ public class Database {
             return -1;
         }
     }
+    
+    public static void killDataBaseInstance() {
+        databaseInstance = null;
+    };
 }

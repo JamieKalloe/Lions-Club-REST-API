@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import nl.ipsen3.model.Order;
 import nl.ipsen3.database.Database;
+import nl.ipsen3.model.Wine;
+import nl.ipsen3.model.WineOrder;
 
 /**
  *
@@ -48,9 +50,16 @@ public class OrderDAO {
         return null;
     }
     
-    public void add(Order order) {
+    public Order add(Order order) {
         order = this.addOrderToDatabase(order);
-        orders.add(order);
+        return order;
+//        orders.add(order);
+//        
+////        Add WineOrders
+//        WinesOrderDAO wDao = new WinesOrderDAO();
+//        for(WineOrder wineOrder : order.getWineOrders()) {
+//            wDao.add(wineOrder);
+//        }
     }
     
     public void update(int id, Order order) {
@@ -70,6 +79,7 @@ public class OrderDAO {
     private List<Order> getAllFromDatabase() {
         List<Order> orderList = new ArrayList();
         ResultSet results = databaseInstance.select("order");
+        WinesOrderDAO wDao = new WinesOrderDAO();
         
         try {
             while(results.next()) {
@@ -77,7 +87,10 @@ public class OrderDAO {
                 Integer.parseInt(results.getString("id")),
                 Integer.parseInt(results.getString("guest_id")),
                 Integer.parseInt(results.getString("status_id")));
-
+                
+                //Get all wineOrders for a specific orderId
+                order.setWineOrders(new ArrayList<WineOrder>(wDao.getAllFor(order.getId())));
+                
                 orderList.add(order);
             }
         } catch(SQLException e) {

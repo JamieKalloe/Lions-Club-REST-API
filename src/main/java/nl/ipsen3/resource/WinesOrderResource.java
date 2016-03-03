@@ -6,10 +6,6 @@
 package nl.ipsen3.resource;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.itextpdf.text.DocumentException;
-import generators.InvoiceGenerator;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -20,47 +16,37 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import nl.ipsen3.model.Order;
 import nl.ipsen3.View;
+import nl.ipsen3.model.Wine;
 import nl.ipsen3.model.WineOrder;
-import nl.ipsen3.persistence.WinesOrderDAO;
-import nl.ipsen3.service.OrderService;
+import nl.ipsen3.service.WinesOrderService;
 
 /**
  *
  * @author Jamie
  */
-@Path("/orders")
+@Path("/wineOrders")
 @Produces(MediaType.APPLICATION_JSON)
-public class OrderResource
+public class WinesOrderResource
 {
-    private final OrderService service;
+    private final WinesOrderService service;
     
-    public OrderResource(OrderService service)
+    public WinesOrderResource(WinesOrderService service)
     {
         this.service = service;
     }
     
     @GET
     @JsonView(View.Public.class)
-    public Collection<Order> retrieveAll()
+    public Collection<WineOrder> retrieveAll()
     {
-        //test code
-        Collection<Order> orders = service.getAll();
-        for(Order order : orders) {
-            try {
-                new InvoiceGenerator().generate(order);
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-        }
         return service.getAll();
     }
     
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
-    public Order retrieve(@PathParam("id") int id)
+    public WineOrder retrieve(@PathParam("id") int id)
     {
         return service.get(id);
     }
@@ -68,19 +54,18 @@ public class OrderResource
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
-    public int create(Order order)
+    public void create(WineOrder wineOrder)
     {
-        return service.add(order);
-        
+        service.add(wineOrder);
     }
     
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
-    public void update(@PathParam("id") int id, Order order)
+    public void update(@PathParam("id") int id, WineOrder wineOrder)
     {
-        service.update(id, order);
+        service.update(id, wineOrder);
     }
     
     @DELETE

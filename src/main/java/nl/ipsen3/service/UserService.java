@@ -41,6 +41,11 @@ public class UserService extends BaseService<User>
         dao.update(id, user);
     }
     
+     public void updateRole(User user)
+    {
+        dao.updateRole(user);
+    }
+    
     public void delete(int id)
     {
        // Controleren of deze gebruiker wel bestaat

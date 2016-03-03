@@ -29,8 +29,8 @@ public class OrderService extends BaseService<Order>{
         return requireResult(dao.get(id));
     }
     
-    public void add(Order order) {
-        dao.add(order);
+    public int add(Order order) {
+        return dao.add(order).getId();
     }
     
     public void update(int id, Order order) {
