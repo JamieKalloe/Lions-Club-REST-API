@@ -2,6 +2,8 @@ package nl.ipsen3.service;
 
 import java.util.Collection;
 import java.util.Optional;
+import nl.IPSEN3.model.MailType;
+import nl.IPSEN3.persistence.MailFactory;
 import nl.ipsen3.model.Address;
 import nl.ipsen3.model.User;
 import nl.ipsen3.persistence.UserDAO;
@@ -33,6 +35,11 @@ public class UserService extends BaseService<User>
     public int add(User user)
     {
         dao.add(user);
+        try {
+            new nl.IPSEN3.service.MailService().send(new MailFactory(user).generate(MailType.REGISTRATION));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         return 1;
     }
     
