@@ -33,9 +33,11 @@ public class MailFactory {
         
         switch(mailType) {
             case INVOICE:
-                return new Mail(this.receiver.getEmail(), "Uw factuur - Lions Club", "Beste meneer " + this.receiver.getLastName() + ",\n\n Uw factuur vindt u in de bijlage.\n\nLions Club", 
+                return new Mail(this.receiver.getEmail(), "Uw factuur - Lions Club", "Beste persoon " + this.receiver.getLastName() + ",\n\n Uw factuur vindt u in de bijlage.\n\nLions Club", 
                 this.getInvoice(receiver.getOrder().getId()).getAbsolutePath());
-                
+            case REGISTRATION:
+                return new Mail(this.receiver.getEmail(), "Uw registratie bij Lions Club", "Beste persoon " + this.receiver.getLastName() + ",\n\n U bent nu registreert bij de Lions Club. U kunt u nu inloggen met uw email en wachtwoord. \n\nLions Club");
+            	break;
             default:
                 break;
         }

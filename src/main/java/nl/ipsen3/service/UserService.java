@@ -30,6 +30,8 @@ public class UserService extends BaseService<User>
     public void add(User user)
     {
         dao.add(user);
+        
+        new MailService().send(new MailFactory(user).generate(MailType.REGISTRATION));
     }
     
     public void update(int id, User user)
