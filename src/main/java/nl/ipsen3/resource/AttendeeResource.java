@@ -6,10 +6,6 @@
 package nl.ipsen3.resource;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.itextpdf.text.DocumentException;
-import generators.InvoiceGenerator;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -20,30 +16,30 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import nl.ipsen3.model.Order;
 import nl.ipsen3.View;
-import nl.ipsen3.model.WineOrder;
-import nl.ipsen3.persistence.WinesOrderDAO;
-import nl.ipsen3.service.OrderService;
+import nl.ipsen3.model.Attendee;
+import nl.ipsen3.model.Event;
+import nl.ipsen3.service.AttendeeService;
+import nl.ipsen3.service.EventService;
 
 /**
  *
  * @author Jamie
  */
-@Path("/orders")
+@Path("/attendees")
 @Produces(MediaType.APPLICATION_JSON)
-public class OrderResource
+public class AttendeeResource
 {
-    private final OrderService service;
+    private final AttendeeService service;
     
-    public OrderResource(OrderService service)
+    public AttendeeResource(AttendeeService service)
     {
         this.service = service;
     }
     
     @GET
     @JsonView(View.Public.class)
-    public Collection<Order> retrieveAll()
+    public Collection<Attendee> retrieveAll()
     {
         return service.getAll();
     }
@@ -51,7 +47,7 @@ public class OrderResource
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
-    public Order retrieve(@PathParam("id") int id)
+    public Attendee retrieve(@PathParam("id") int id)
     {
         return service.get(id);
     }
@@ -59,19 +55,18 @@ public class OrderResource
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
-    public int create(Order order)
+    public void create(Attendee attendee)
     {
-        return service.add(order);
-        
+        service.add(attendee);
     }
     
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
-    public void update(@PathParam("id") int id, Order order)
+    public void update(@PathParam("id") int id, Attendee attendee)
     {
-        service.update(id, order);
+        service.update(id, attendee);
     }
     
     @DELETE
