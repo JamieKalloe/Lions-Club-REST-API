@@ -33,7 +33,7 @@ public class WineDAO {
     }
     
     public List<Wine> getAll() {
-        return allWines;
+        return getAllFromDatabase();
     }
     
     public List<Wine> getAllForOffer(int offerId) {
@@ -42,7 +42,7 @@ public class WineDAO {
       
     public Wine get(int id) {
         
-        for(Wine wine : allWines) {
+        for(Wine wine : getAllFromDatabase()) {
             if(wine.getId() == id) {
                 return wine;
             }
