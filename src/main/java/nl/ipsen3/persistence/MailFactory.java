@@ -36,6 +36,10 @@ public class MailFactory {
                 return new Mail(this.receiver.getEmail(), "Uw factuur - Lions Club", "Beste meneer " + this.receiver.getLastName() + ",\n\n Uw factuur vindt u in de bijlage.\n\nLions Club", 
                 this.getInvoice(receiver.getOrder().getId()).getAbsolutePath());
                 
+                
+            case REGISTRATION:
+                return new Mail(this.receiver.getEmail(), "Uw factuur - Lions Club", "Beste " + this.receiver.getFirstName() + " " + this.receiver.getLastName() + ",\n\nBedankt voor uw registratie bij de Lions Club!");
+                
             default:
                 break;
         }

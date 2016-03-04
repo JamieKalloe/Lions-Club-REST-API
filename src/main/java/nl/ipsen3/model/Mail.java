@@ -20,6 +20,12 @@ public class Mail {
     @JsonView(View.Public.class)
     private int id;
     
+    public Mail(String recipient, String content, String subject) {
+        this.recipient = recipient;
+        this.content = content;
+        this.subject = subject;
+    }
+    
     public Mail(String recipient, String content, String subject, String attachment) {
         this.recipient = recipient;
         this.content = content;
