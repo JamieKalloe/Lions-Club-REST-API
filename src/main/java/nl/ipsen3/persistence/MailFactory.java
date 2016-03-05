@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nl.IPSEN3.persistence;
+package nl.ipsen3.persistence;
 
 import generators.InvoiceGenerator;
 import java.io.File;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import nl.IPSEN3.model.MailType;
+import nl.ipsen3.model.MailType;
 import nl.ipsen3.model.Mail;
 import nl.ipsen3.model.User;
 import nl.ipsen3.persistence.OrderDAO;

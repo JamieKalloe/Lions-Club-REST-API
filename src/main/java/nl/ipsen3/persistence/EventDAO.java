@@ -28,7 +28,7 @@ public class EventDAO {
     }
     
     public List<Event> getAll() {
-        return this.events;
+        return getAllFromDatabase();
     }
     
     public Event get(int id) {

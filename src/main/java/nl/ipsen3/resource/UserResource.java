@@ -12,11 +12,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import nl.IPSEN3.model.MailType;
-import nl.IPSEN3.persistence.MailFactory;
-import nl.IPSEN3.service.MailService;
+import nl.ipsen3.model.MailType;
+import nl.ipsen3.persistence.MailFactory;
+import nl.ipsen3.service.MailService;
 import nl.ipsen3.View;
 import nl.ipsen3.model.Address;
+import nl.ipsen3.model.Mail;
 import nl.ipsen3.model.User;
 import nl.ipsen3.service.UserService;
 
@@ -65,6 +66,19 @@ public class UserResource
     public void create(User user)
     {
         service.add(user);
+    }
+    
+    @POST
+    @Path("/email")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @JsonView(View.Private.class)
+    public void sendMail(String email)
+    {
+        try {
+            new nl.ipsen3.service.MailService().send(new Mail("ipsen2groep1@hotmail.com", email, "Vraag Lions Club"));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     
     @PUT

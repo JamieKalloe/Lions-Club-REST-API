@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nl.IPSEN3.service;
+package nl.ipsen3.service;
 
 import java.util.Properties;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import nl.IPSEN3.model.MailType;
+import nl.ipsen3.model.MailType;
 import nl.ipsen3.model.Mail;
 import nl.ipsen3.model.MailMessage;
 import nl.ipsen3.service.UserService;
