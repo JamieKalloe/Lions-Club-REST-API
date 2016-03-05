@@ -22,15 +22,27 @@ public class AddressDAO {
     private final List<Address> addresses;
     private final Database databaseInstance;
     
+    /**
+     * creates a new instance of the dao
+     */
     public AddressDAO() {
         this.databaseInstance = Database.getInstance();
         this.addresses = this.getAllFromDatabase();
     }
     
+    /**
+     *
+     * @return returns a list of all objects
+     */
     public List<Address> getAll() {
         return this.addresses;
     }
     
+    /**
+     *
+     * @param id address id
+     * @return address object
+     */
     public Address get(int id) {
         try {
             for(Address address : addresses) {
@@ -46,12 +58,22 @@ public class AddressDAO {
         return null;
     }
     
+    /**
+     *
+     * @param address address object
+     * @return added address object
+     */
     public int add(Address address) {
         address = this.addAddressToDatabase(address);
         addresses.add(address);
         return address.getId();
     }
     
+    /**
+     *
+     * @param id address id
+     * @param address address to be updated
+     */
     public void update(int id, Address address) {
         Address oldAddress = get(id);
         address.setId(id);
@@ -61,6 +83,10 @@ public class AddressDAO {
         addresses.set(idInList, oldAddress);
     }
     
+    /**
+     *
+     * @param id address id
+     */
     public void delete(int id) {
         Address address = get(id);
         this.removeAddressFromDatabase(address);

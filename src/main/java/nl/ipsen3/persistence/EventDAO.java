@@ -22,15 +22,27 @@ public class EventDAO {
     private final List<Event> events;
     private final Database databaseInstance;
     
+    /**
+     * creates a new instance of the dao
+     */
     public EventDAO() {
         this.databaseInstance = Database.getInstance();
         this.events = getAllFromDatabase();
     }
     
+    /**
+     *
+     * @return list of all events
+     */
     public List<Event> getAll() {
         return this.events;
     }
     
+    /**
+     *
+     * @param id event id
+     * @return event object
+     */
     public Event get(int id) {
         try {
             for(Event event : events) {
@@ -46,11 +58,20 @@ public class EventDAO {
         return null;
     }
     
+    /**
+     *
+     * @param event event to be added
+     */
     public void add(Event event) {
         event = this.addEventToDatabase(event);
         events.add(event);
     }
     
+    /**
+     *
+     * @param id event id
+     * @param event event to be updated
+     */
     public void update(int id, Event event) {
         Event oldEvent = this.get(id);
         event.setId(id);
@@ -59,6 +80,10 @@ public class EventDAO {
         events.set(idInList, event);
     }
     
+    /**
+     *
+     * @param id event id
+     */
     public void delete(int id) {
         Event event = this.get(id);
         this.removeEventFromDatabase(event);

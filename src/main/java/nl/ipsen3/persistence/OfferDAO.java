@@ -26,15 +26,27 @@ public class OfferDAO {
     private final List<Offer> offers;
     private final Database databaseInstance;
     
+    /**
+     * creates a new instance of the dao
+     */
     public OfferDAO() {
         this.databaseInstance = Database.getInstance();
         this.offers = getAllFromDatabase();
     }
     
+    /**
+     *
+     * @return list of all offers
+     */
     public List<Offer> getAll() {
           return getAllFromDatabase();
     }
     
+    /**
+     *
+     * @param id offer id
+     * @return offer
+     */
     public Offer get(int id) {
         try {
             for(Offer offer : offers) {
@@ -50,11 +62,20 @@ public class OfferDAO {
         return null;
     }
           
+    /**
+     *
+     * @param offer offer to be added
+     */
     public void add(Offer offer){
         offer = this.addOfferToDatabase(offer);
         offers.add(offer);
     }
     
+    /**
+     *
+     * @param id offer id
+     * @param offer offer to be updated
+     */
     public void update(int id, Offer offer){
         Offer oldOffer = get(id);
         oldOffer.setId(id);
@@ -63,6 +84,10 @@ public class OfferDAO {
         
     }
     
+    /**
+     *
+     * @param id offer id
+     */
     public void delete(int id) {
         Offer offer = get(id);
         this.removeOfferFromDatabase(offer);
