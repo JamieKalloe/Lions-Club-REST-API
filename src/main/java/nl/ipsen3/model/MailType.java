@@ -10,6 +10,14 @@ package nl.IPSEN3.model;
  * @author Jamie
  */
 public enum MailType {
+
+    /**
+     * type invoice of the mail
+     */
     INVOICE,
+
+    /**
+     * registration mail
+     */
     REGISTRATION
 }

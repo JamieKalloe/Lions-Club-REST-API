@@ -15,16 +15,31 @@ public class Merchant{
     @JsonView(View.Public.class)
     private String name, email;
     
+    /**
+     * new instance of merchant
+     */
     public Merchant(){}
        
-     public Merchant(int id) {
+    /**
+     *
+     * @param id merchant id
+     */
+    public Merchant(int id) {
         this.id = id;
     }
         
+    /**
+     *
+     * @return merchant id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @return merchant name
+     */
     public String getName() {
         return name;
     }
@@ -47,6 +62,10 @@ public class Merchant{
         return this.addressId;
     }
     
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
@@ -64,7 +83,7 @@ public class Merchant{
     /**
      * Sets address.
      *
-     * @param address the address
+     * @param addressId
      */
     public void setAddressId(int addressId) {
         this.addressId = addressId;

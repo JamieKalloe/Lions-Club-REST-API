@@ -35,10 +35,19 @@ public class Order {
     
     private ArrayList<WineOrder> wineOrders;
     
+    /**
+     * new order
+     */
     public Order() {
         
     }
     
+    /**
+     *
+     * @param id order id
+     * @param userId user id
+     * @param orderStatusId order status id
+     */
     public Order(int id, int userId, int orderStatusId) {
         this.id = id;
         this.userId = userId;
@@ -49,54 +58,106 @@ public class Order {
         
     }
 
+    /**
+     *
+     * @return total amout
+     */
     public double getTotalAmount() {
         return totalAmount;
     }
 
+    /**
+     *
+     * @return date
+     */
     public Date getDate() {
         return date;
     }
     
+    /**
+     *
+     * @return order d
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @return user id
+     */
     public int getUserId() {
         return userId;
     }
 
+    /**
+     *
+     * @return order status id
+     */
     public int getOrderStatus() {
         return orderStatus;
     }
 
+    /**
+     *
+     * @return arraylist wines
+     */
     public ArrayList<Wine> getWines() {
         return wines;
     }
     
+    /**
+     *
+     * @return offer id
+     */
     public int getOfferId() {
        return this.offerId;
     }
      
+    /**
+     *
+     * @return order
+     */
     public Offer getOffer() {
        return this.offer;
     }
 
+    /**
+     *
+     * @param id sets the order id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param userId sets the user id
+     */
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
+    /**
+     *
+     * @param orderStatus sets the order status id
+     */
     public void setOrderStatus(int orderStatus) {
         this.orderStatus = orderStatus;
     }
 
+    /**
+     *
+     * @param wines sets the wines
+     */
     public void setWines(ArrayList<Wine> wines) {
         this.wines = wines;
     }
     
+    /**
+     *
+     * @param wineOrders sets the wine orders
+     */
     public void setWineOrders(ArrayList<WineOrder> wineOrders) {
         this.wineOrders = wineOrders;
         double total = 0.0;
@@ -107,19 +168,35 @@ public class Order {
         this.totalAmount = total;
     }
     
+    /**
+     *
+     * @return gets the wine orders
+     */
     public ArrayList<WineOrder> getWineOrders() {
         return this.wineOrders;
     }
 
+    /**
+     *
+     * @param totalAmount gets the total amount
+     */
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
 
+    /**
+     *
+     * @param date gets the date
+     */
     public void setDate(Date date) {
         this.date = date;
     }
     
-     public void setOfferId(int offerId) {
+    /**
+     *
+     * @param offerId gets the offer id
+     */
+    public void setOfferId(int offerId) {
         this.offerId = offerId;
     }
 }
