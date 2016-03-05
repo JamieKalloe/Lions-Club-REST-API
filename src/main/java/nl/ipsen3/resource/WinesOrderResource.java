@@ -31,11 +31,19 @@ public class WinesOrderResource
 {
     private final WinesOrderService service;
     
+    /**
+     * creates a new instance of the resource, using the service
+     * @param service wine order service
+     */
     public WinesOrderResource(WinesOrderService service)
     {
         this.service = service;
     }
     
+    /**
+     *
+     * @return list of all wine orders
+     */
     @GET
     @JsonView(View.Public.class)
     public Collection<WineOrder> retrieveAll()
@@ -43,6 +51,11 @@ public class WinesOrderResource
         return service.getAll();
     }
     
+    /**
+     *
+     * @param id wine order id
+     * @return wine order
+     */
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
@@ -51,6 +64,10 @@ public class WinesOrderResource
         return service.get(id);
     }
     
+    /**
+     *
+     * @param wineOrder wine order to be added
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
@@ -59,6 +76,11 @@ public class WinesOrderResource
         service.add(wineOrder);
     }
     
+    /**
+     *
+     * @param id wine order id
+     * @param wineOrder wine order to be updated
+     */
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -68,6 +90,10 @@ public class WinesOrderResource
         service.update(id, wineOrder);
     }
     
+    /**
+     *
+     * @param id wine order id
+     */
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") int id)

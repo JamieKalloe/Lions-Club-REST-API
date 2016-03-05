@@ -31,11 +31,19 @@ public class UserResource
 {
     private final UserService service;
     
+    /**
+     * creates a new instance of the resource, using the service
+     * @param service user serivce
+     */
     public UserResource(UserService service)
     {
         this.service = service;
     }
     
+    /**
+     *
+     * @return list of all users
+     */
     @GET
     @JsonView(View.Public.class)
     public Collection<User> retrieveAll()
@@ -43,6 +51,11 @@ public class UserResource
         return service.getAll();
     }
     
+    /**
+     *
+     * @param id user id
+     * @return user
+     */
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
@@ -51,6 +64,11 @@ public class UserResource
         return service.get(id);
     }
     
+    /**
+     *
+     * @param email email of user
+     * @return int
+     */
     @GET
     @Path("/email/{email}")
     @JsonView(View.Public.class)
@@ -59,6 +77,10 @@ public class UserResource
         return service.checkIfEmailExists(email);
     }
     
+    /**
+     *
+     * @param user user to be added
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
@@ -67,6 +89,11 @@ public class UserResource
         service.add(user);
     }
     
+    /**
+     *
+     * @param id user id
+     * @param user user to be updated
+     */
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -76,6 +103,10 @@ public class UserResource
         service.update(id, user);
     }
     
+    /**
+     *
+     * @param user user to be updated (role)
+     */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
@@ -84,6 +115,10 @@ public class UserResource
         service.updateRole(user);
     }
     
+    /**
+     *
+     * @param id user id
+     */
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") int id)
@@ -91,6 +126,11 @@ public class UserResource
         service.delete(id);
     }
     
+    /**
+     *
+     * @param authenticator auth
+     * @return user
+     */
     @GET
     @Path("/me")
     @JsonView(View.Private.class)

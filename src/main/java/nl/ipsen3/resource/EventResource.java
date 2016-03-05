@@ -32,11 +32,19 @@ public class EventResource
 {
     private final EventService service;
     
+    /**
+     * creates a new instance of the resource, using the service
+     * @param service event service
+     */
     public EventResource(EventService service)
     {
         this.service = service;
     }
     
+    /**
+     *
+     * @return list of all events
+     */
     @GET
     @JsonView(View.Public.class)
     public Collection<Event> retrieveAll()
@@ -44,6 +52,11 @@ public class EventResource
         return service.getAll();
     }
     
+    /**
+     *
+     * @param id event id
+     * @return event
+     */
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
@@ -52,6 +65,10 @@ public class EventResource
         return service.get(id);
     }
     
+    /**
+     *
+     * @param event event to be added
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
@@ -60,6 +77,11 @@ public class EventResource
         service.add(event);
     }
     
+    /**
+     *
+     * @param id event id
+     * @param event event to be updated
+     */
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -69,6 +91,10 @@ public class EventResource
         service.update(id, event);
     }
     
+    /**
+     *
+     * @param id event to be deleted
+     */
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") int id)

@@ -36,11 +36,19 @@ public class OrderResource
 {
     private final OrderService service;
     
+    /**
+     * creates a new instance of the resource, using the service
+     * @param service order service
+     */
     public OrderResource(OrderService service)
     {
         this.service = service;
     }
     
+    /**
+     *
+     * @return list of all orders
+     */
     @GET
     @JsonView(View.Public.class)
     public Collection<Order> retrieveAll()
@@ -48,6 +56,11 @@ public class OrderResource
         return service.getAll();
     }
     
+    /**
+     *
+     * @param id order id
+     * @return order
+     */
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
@@ -56,6 +69,11 @@ public class OrderResource
         return service.get(id);
     }
     
+    /**
+     *
+     * @param order order to be added
+     * @return order id
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
@@ -65,6 +83,11 @@ public class OrderResource
         
     }
     
+    /**
+     *
+     * @param id order id
+     * @param order order to be updated
+     */
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -74,6 +97,10 @@ public class OrderResource
         service.update(id, order);
     }
     
+    /**
+     *
+     * @param id order id
+     */
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") int id)

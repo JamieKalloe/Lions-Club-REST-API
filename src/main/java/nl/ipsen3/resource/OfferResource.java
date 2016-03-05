@@ -30,11 +30,19 @@ public class OfferResource
 {
     private final OfferService service;
     
+    /**
+     * creates a new instance of the resource, using the service
+     * @param service offer service
+     */
     public OfferResource(OfferService service)
     {
         this.service = service;
     }
     
+    /**
+     *
+     * @return list of all offers
+     */
     @GET
     @JsonView(View.Public.class)
     public Collection<Offer> retrieveAll()
@@ -42,6 +50,11 @@ public class OfferResource
         return service.getAll();   
     }
     
+    /**
+     *
+     * @param id offer id
+     * @return offer
+     */
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
@@ -50,6 +63,10 @@ public class OfferResource
         return service.get(id);
     }
     
+    /**
+     *
+     * @param offer offer to be added
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
@@ -58,6 +75,11 @@ public class OfferResource
         service.add(offer);
     }
     
+    /**
+     *
+     * @param id offer id
+     * @param offer offer to be updated
+     */
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -67,6 +89,10 @@ public class OfferResource
         service.update(id, offer);
     }
     
+    /**
+     *
+     * @param id offer id
+     */
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") int id)
