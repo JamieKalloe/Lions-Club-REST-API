@@ -19,22 +19,44 @@ public class OfferService extends BaseService<Offer>{
     
     private final OfferDAO dao;
     
+    /**
+     *
+     * @param dao data acces object
+     */
     public OfferService(OfferDAO dao) {
         this.dao = dao;
     }
     
+    /**
+     *
+     * @return list of all offers
+     */
     public Collection<Offer> getAll() {
         return dao.getAll();
     }
     
+    /**
+     *
+     * @param id offer id
+     * @return offer
+     */
     public Offer get(int id) {
         return requireResult(dao.get(id));
     }
     
+    /**
+     *
+     * @param offer offer to be added
+     */
     public void add(Offer offer){
         dao.add(offer);
     }
     
+    /**
+     *
+     * @param id offer id
+     * @param offer offer to be updated
+     */
     public void update(int id, Offer offer){
         if(offer.isStarted() == 1){
           if(checkToBeStarted()) {
@@ -46,6 +68,10 @@ public class OfferService extends BaseService<Offer>{
         
     }
     
+    /**
+     *
+     * @param id offer id
+     */
     public void delete(int id) {
         Offer offer = get(id);
         
@@ -54,6 +80,12 @@ public class OfferService extends BaseService<Offer>{
     /*
     Checks if the current offer can be started
     */
+
+    /**
+     *
+     * @return boolean
+     */
+
     public boolean checkToBeStarted() {
         Collection<Offer> offers = getAll();
         boolean start = true;
