@@ -30,11 +30,19 @@ public class AddressResource
 {
     private final AddressService service;
     
+    /**
+     * creates a new instance of the resource using the service
+     * @param service
+     */
     public AddressResource(AddressService service)
     {
         this.service = service;
     }
     
+    /**
+     *
+     * @return list of all addresses
+     */
     @GET
     @JsonView(View.Public.class)
     public Collection<Address> retrieveAll()
@@ -42,6 +50,11 @@ public class AddressResource
         return service.getAll();
     }
     
+    /**
+     *
+     * @param id address id
+     * @return address
+     */
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
@@ -50,6 +63,11 @@ public class AddressResource
         return service.get(id);
     }
     
+    /**
+     *
+     * @param address address to be added
+     * @return int address id
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
@@ -58,6 +76,11 @@ public class AddressResource
        return service.add(address);
     }
     
+    /**
+     *
+     * @param id address id
+     * @param address address to be updated
+     */
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -67,6 +90,10 @@ public class AddressResource
         service.update(id, address);
     }
     
+    /**
+     *
+     * @param id address id
+     */
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") int id)

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nl.ipsen3.resource;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -30,11 +25,20 @@ public class OfferWineResource
 {
     private final OfferWineService service;
     
+     /**
+     * @author Philip
+     * creates a new instance of the resource, using the service
+     * @param service OfferWineservice
+     */
     public OfferWineResource(OfferWineService service)
     {
         this.service = service;
     }
     
+     /**
+     * @author Philip
+     * @return list of all OfferWine objects
+     */
     @GET
     @JsonView(View.Public.class)
     public Collection<OfferWine> retrieveAll()
@@ -42,6 +46,11 @@ public class OfferWineResource
         return service.getAll();   
     }
     
+     /**
+     * @author Philip
+     * @param id of offerWine
+     * @return offerWine
+     */
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
@@ -50,6 +59,10 @@ public class OfferWineResource
         return service.get(id);
     }
     
+     /**
+     * @author Philip
+     * @param offerWine OfferWine to be created
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Private.class)
@@ -58,6 +71,10 @@ public class OfferWineResource
         service.add(offerWine);
     }
    
+    /**
+     * @author Philip
+     * @param id OfferWine to be deleted
+     */
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") int id)

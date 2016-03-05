@@ -25,10 +25,20 @@ public class MailFactory {
     private File file;
     private User receiver;
     
+    /**
+     *
+     * @param user user
+     */
     public MailFactory(User user) {
         this.receiver = user;
     }
     
+    /**
+     *
+     * @param mailType type of the mail to be returned
+     * @return
+     * @throws IOException
+     */
     public Mail generate(MailType mailType) throws IOException {
         
         switch(mailType) {

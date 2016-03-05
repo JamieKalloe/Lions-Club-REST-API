@@ -45,20 +45,11 @@ public class Database {
     }
 
     private Database(ApiConfiguration configuration) {
-        //Mike's DB settings
-//        String url = "jdbc:mysql://localhost:3306/";
-//        String user = "lions_club";
-//        String password = "root";
-//        String dbName = "lions_club";
+  
         String user = configuration.getDatabaseUser();
         String password = configuration.getDatabasePwd();
         String dbName = configuration.getDatabaseName();
         String url = "jdbc:mysql://"+configuration.getDatabaseURL()+"/";
-        
-        /* String url = "";
-        String user = "";
-        String password = "";
-        String dbName = "";*/
 
 
         try {

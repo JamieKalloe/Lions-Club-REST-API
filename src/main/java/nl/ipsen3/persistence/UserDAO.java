@@ -14,25 +14,37 @@ import java.util.Optional;
 
 /**
  *
- * @author 
+ * @author Mike Bazuin
  */
 public class UserDAO
 {
     private List<User> users;
     private final Database databaseInstance;
     
+    /**
+     * creates a new instance of the dao
+     */
     public UserDAO()
     {
         this.databaseInstance = Database.getInstance();
         users = this.getAllFromDatabase();
     }
     
+    /**
+     *
+     * @return list of all users
+     */
     public List<User> getAll()
     {
  
         return this.getAllFromDatabase();
     }
     
+    /**
+     *
+     * @param id user id
+     * @return user
+     */
     public User get(int id)
     {
         users = getAll();
@@ -51,12 +63,21 @@ public class UserDAO
         }
     }
     
+    /**
+     *
+     * @param user user to be added
+     */
     public void add(User user)
     {
         user = this.addUserToDatabase(user);
         users.add(user);
     }
     
+    /**
+     *
+     * @param id user id
+     * @param user user to be updated
+     */
     public void update(int id, User user)
     {
         User oldUser = this.get(id);
@@ -67,6 +88,10 @@ public class UserDAO
         
     }
     
+    /**
+     *
+     * @param id user id
+     */
     public void delete(int id)
     {
         User user = this.get(id);
@@ -139,7 +164,11 @@ public class UserDAO
         databaseInstance.update("guest", user.getId(), databaseData);
     }
     
-     public void updateRole(User user) {
+    /**
+     *
+     * @param user
+     */
+    public void updateRole(User user) {
         HashMap databaseData = new HashMap();
         databaseData.put("role", user.getRole());
             
@@ -167,8 +196,12 @@ public class UserDAO
         databaseInstance.delete("guest", user.getId());
     }
     
-    
-   public User getByEmailAddress(String emailAddress)
+    /**
+     *
+     * @param emailAddress
+     * @return
+     */
+    public User getByEmailAddress(String emailAddress)
     {
         Optional<User> result = users.stream()
             .filter(user -> user.getEmail().equals(emailAddress))

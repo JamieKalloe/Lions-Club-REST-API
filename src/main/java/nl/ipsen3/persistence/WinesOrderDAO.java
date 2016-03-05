@@ -21,19 +21,36 @@ public class WinesOrderDAO {
     private final List<WineOrder> wineOrders;
     private final Database databaseInstance;
     
+    /**
+     * creates a new instance of the dao
+     */
     public WinesOrderDAO() {
         this.databaseInstance = Database.getInstance();
         this.wineOrders = this.getAllFromDatabase();
     }
     
+    /**
+     *
+     * @return list of all wineorders
+     */
     public List<WineOrder> getAll() {
         return this.wineOrders;
     }
     
+    /**
+     *
+     * @param id wine order id
+     * @return wine order
+     */
     public List<WineOrder> getAllFor(int id) {
         return this.getAllForOrder(id);
     }
     
+    /**
+     *
+     * @param id wine order id
+     * @return wine order
+     */
     public WineOrder get(int id) {
         try {
             for(WineOrder wineOrder : wineOrders) {
@@ -49,11 +66,20 @@ public class WinesOrderDAO {
         return null;
     }
     
+    /**
+     *
+     * @param wineOrder wine order to be added
+     */
     public void add(WineOrder wineOrder) {
         wineOrder = this.addWineOrderToDatabase(wineOrder);
         wineOrders.add(wineOrder);
     }
     
+    /**
+     *
+     * @param id wine order id
+     * @param wineOrder wine order to be updated
+     */
     public void update(int id, WineOrder wineOrder) {
         WineOrder oldWineOrder = this.get(id);
         wineOrder.setOrderID(id);
@@ -62,6 +88,10 @@ public class WinesOrderDAO {
         wineOrders.set(idInList, wineOrder);
     }
     
+    /**
+     *
+     * @param id wine order id
+     */
     public void delete(int id) {
         WineOrder wineOrder = this.get(id);
         this.removeWineOrderFromDatabase(wineOrder);

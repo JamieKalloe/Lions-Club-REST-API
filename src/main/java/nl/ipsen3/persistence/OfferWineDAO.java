@@ -22,22 +22,38 @@ public class OfferWineDAO {
     private final List<OfferWine> offerWines;
     private final Database databaseInstance;
     
+    /**
+    *
+    * Creates new offerWineDao
+    */
     public OfferWineDAO() {
         this.databaseInstance = Database.getInstance();
         this.offerWines = getAllFromDatabase();
     }
     
+     /**
+    *
+    * @param offerWine offerWine to be added
+    */
     public void add(OfferWine offerWine){
         offerWine = this.addOfferToDatabase(offerWine);
         offerWines.add(offerWine);
     }
     
+      /**
+    *
+    * @param id id of offerWine to be deleted
+    */
     public void delete(int id) {
         OfferWine offerWine = get(id);
         this.removeOfferFromDatabase(offerWine);
         offerWines.remove(offerWine);
     }
     
+      /**
+    *
+    * @return list of all offerWine objects
+    */
     public List<OfferWine> getAll() {
         return this.offerWines;
     }

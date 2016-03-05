@@ -19,16 +19,29 @@ public class MerchantService extends BaseService<Merchant>
 {
     private final MerchantDAO dao;
     
+    /**
+     *
+     * @param dao data acces object
+     */
     public MerchantService(MerchantDAO dao)
     {
         this.dao = dao;
     }
     
+    /**
+     *
+     * @return list of all merchants
+     */
     public Collection<Merchant> getAll()
     {
         return dao.getAll();
     }
     
+    /**
+     *
+     * @param id merchant id
+     * @return merchant
+     */
     public Merchant get(int id)
     {
         return requireResult(dao.get(id));

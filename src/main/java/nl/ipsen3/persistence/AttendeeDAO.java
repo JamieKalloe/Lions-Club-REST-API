@@ -22,15 +22,27 @@ public class AttendeeDAO {
     private final List<Attendee> attendees;
     private final Database databaseInstance;
     
+    /**
+     * creates a new instance of the dao
+     */
     public AttendeeDAO() {
         this.databaseInstance = Database.getInstance();
         this.attendees = getAllFromDatabase();
     }
     
+    /**
+     *
+     * @return list of all attendees
+     */
     public List<Attendee> getAll() {
         return this.attendees;
     }
     
+    /**
+     *
+     * @param userId user id
+     * @return attendee object
+     */
     public Attendee get(int userId) {
         try {
             for(Attendee attendee : attendees) {
@@ -46,11 +58,20 @@ public class AttendeeDAO {
         return null;
     }
     
+    /**
+     *
+     * @param attendee attendee to be added
+     */
     public void add(Attendee attendee) {
         attendee = this.addAttendeeToDatabase(attendee);
         attendees.add(attendee);
     }
     
+    /**
+     *
+     * @param userId user id
+     * @param attendee attendee to be updated
+     */
     public void update(int userId, Attendee attendee) {
         Attendee oldAttendee = this.get(userId);
         attendee.setUserId(userId);
@@ -59,6 +80,10 @@ public class AttendeeDAO {
         attendees.set(idInList, attendee);
     }
     
+    /**
+     *
+     * @param userId user id
+     */
     public void delete(int userId) {
         Attendee attendee = this.get(userId);
         this.removeAttendeeFromDatabase(userId);

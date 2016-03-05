@@ -26,15 +26,27 @@ public class OrderDAO {
     private final List<Order> orders;
     private final Database databaseInstance;
     
+    /**
+     * new instance of the dao
+     */
     public OrderDAO() {
         this.databaseInstance = Database.getInstance();
         this.orders = this.getAllFromDatabase();
     }
     
+    /**
+     *
+     * @return list of all orders
+     */
     public List<Order> getAll() {
         return this.orders;
     }
     
+    /**
+     *
+     * @param id order id
+     * @return order
+     */
     public Order get(int id) {
         try {
             for(Order order : orders) {
@@ -50,18 +62,22 @@ public class OrderDAO {
         return null;
     }
     
+    /**
+     *
+     * @param order order to be added
+     * @return order
+     */
     public Order add(Order order) {
         order = this.addOrderToDatabase(order);
         return order;
-//        orders.add(order);
-//        
-////        Add WineOrders
-//        WinesOrderDAO wDao = new WinesOrderDAO();
-//        for(WineOrder wineOrder : order.getWineOrders()) {
-//            wDao.add(wineOrder);
-//        }
+
     }
     
+    /**
+     *
+     * @param id order id
+     * @param order order to be updated
+     */
     public void update(int id, Order order) {
         Order oldOrder = this.get(id);
         order.setId(id);
@@ -70,6 +86,10 @@ public class OrderDAO {
         orders.set(idInList, order);
     }
     
+    /**
+     *
+     * @param id order id
+     */
     public void delete(int id) {
         Order order = this.get(id);
         this.removeOrderFromDatabase(order);

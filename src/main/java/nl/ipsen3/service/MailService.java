@@ -37,6 +37,9 @@ public class MailService {
     private MailType mailType;
     private UserService userService;
     
+    /**
+     * creates a new instance of the mail service
+     */
     public MailService() {
         this.mailProperties = new Properties();
 
@@ -49,6 +52,11 @@ public class MailService {
         mailProperties.put(this.propertySSL, "true");
     }
     
+    /**
+     *
+     * @param mail mail to be sended
+     * @throws Exception e
+     */
     public void send(Mail mail) throws Exception {
 
         this.mail = mail;

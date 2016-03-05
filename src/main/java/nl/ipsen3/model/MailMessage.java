@@ -22,6 +22,15 @@ import javax.mail.internet.MimeMultipart;
  */
 public class MailMessage extends MimeMessage {
     
+    /**
+     *
+     * @param session session of the mail
+     * @param sender sender of the mail
+     * @param recipient recipient of the mail
+     * @param subject subject of the mail
+     * @param content content of the mail
+     * @throws Exception
+     */
     public MailMessage(Session session, String sender, String recipient, String subject, String content) throws Exception{
         super(session);
 
@@ -31,6 +40,16 @@ public class MailMessage extends MimeMessage {
         this.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
     }
     
+    /**
+     *
+     * @param session session of the mail
+     * @param sender sender of the mail
+     * @param recipient recipient of the mail
+     * @param subject subject of the mail
+     * @param content content of the mail
+     * @param attachment attachment of the mail
+     * @throws Exception
+     */
     public MailMessage(Session session, String sender, String recipient, String subject, String content, String attachment) throws Exception {
         super(session);
 

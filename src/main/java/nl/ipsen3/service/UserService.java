@@ -17,11 +17,19 @@ public class UserService extends BaseService<User>
     private final UserDAO dao;
     private AddressService addressService;
     
+    /**
+     *
+     * @param dao data access object 
+     */
     public UserService(UserDAO dao)
     {
         this.dao = dao;
     }
     
+    /**
+     *
+     * @return List of all users
+     */
     public Collection<User> getAll()
     {
         return dao.getAll();
@@ -32,6 +40,11 @@ public class UserService extends BaseService<User>
         return requireResult(dao.get(id));
     }
     
+    /**
+     *
+     * @param user user to be added
+     * @return id of the added user
+     */
     public int add(User user)
     {
         dao.add(user);
@@ -43,16 +56,29 @@ public class UserService extends BaseService<User>
         return 1;
     }
     
+    /**
+     *
+     * @param id id of the user
+     * @param user user to be added
+     */
     public void update(int id, User user)
     {
         dao.update(id, user);
     }
     
+     /**
+     *
+     * @param user user to be updated
+     */
      public void updateRole(User user)
     {
         dao.updateRole(user);
     }
     
+     /**
+     *
+     * @param id id of user to be deleted
+     */
     public void delete(int id)
     {
        // Controleren of deze gebruiker wel bestaat
@@ -61,6 +87,12 @@ public class UserService extends BaseService<User>
         dao.delete(id);
     }
     
+    
+    /**
+     *
+     * @param emailAddress email of the user
+     * @return id of user 
+     */
     public int checkIfEmailExists(String emailAddress)
     {
         Collection<User> users = getAll();
